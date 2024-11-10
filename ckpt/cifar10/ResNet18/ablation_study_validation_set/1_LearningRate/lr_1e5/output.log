@@ -1,0 +1,1194 @@
+[2024/11/06 05:22:56] - Namespace(batch_size=128, data_dir='./data/', dataset='cifar10', epochs=200, network='ResNet18', worker=4, lr_schedule='constant', lr_min=0.0, lr_max=1e-05, weight_decay=0.0005, momentum=0.9, residual=True, validation=True, augs=['RandomCrop', 'RandomHorizontalFlip'], save_dir='ckpt/cifar10/ResNet18/lr_1e5', seed=0, device='2', debug_mode=False, num_classes=10)
+[2024/11/06 05:22:56] - Devices: [1]
+[2024/11/06 05:22:58] - DataParallel(
+  (module): ResNet(
+    (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (layer1): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential()
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential()
+      )
+    )
+    (layer2): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential()
+      )
+    )
+    (layer3): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential()
+      )
+    )
+    (layer4): Sequential(
+      (0): BasicBlock(
+        (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): BasicBlock(
+        (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential()
+      )
+    )
+    (fc): Linear(in_features=512, out_features=10, bias=True)
+  )
+)
+[2024/11/06 05:22:58] - epoch 0 lr 1.000000e-05
+[2024/11/06 05:22:59] - Device: [2]	Iter: [0][0/313]	Loss 2.417 (2.417)	Prec@1 0.148 (0.148)	
+[2024/11/06 05:23:01] - Device: [2]	Iter: [0][150/313]	Loss 2.299 (2.373)	Prec@1 0.133 (0.113)	
+[2024/11/06 05:23:04] - Device: [2]	Iter: [0][300/313]	Loss 2.284 (2.340)	Prec@1 0.141 (0.122)	
+[2024/11/06 05:23:05] - Val Loss 2.2765, Val Accuracy 0.1466
+[2024/11/06 05:23:07] - Model saved at epoch 0 with best val accuracy 0.1466
+[2024/11/06 05:23:08] - epoch 1 lr 1.000000e-05
+[2024/11/06 05:23:09] - Device: [2]	Iter: [1][0/313]	Loss 2.283 (2.283)	Prec@1 0.109 (0.109)	
+[2024/11/06 05:23:11] - Device: [2]	Iter: [1][150/313]	Loss 2.222 (2.256)	Prec@1 0.180 (0.155)	
+[2024/11/06 05:23:14] - Device: [2]	Iter: [1][300/313]	Loss 2.205 (2.241)	Prec@1 0.242 (0.162)	
+[2024/11/06 05:23:15] - Val Loss 2.2084, Val Accuracy 0.1759
+[2024/11/06 05:23:16] - Model saved at epoch 1 with best val accuracy 0.1759
+[2024/11/06 05:23:18] - epoch 2 lr 1.000000e-05
+[2024/11/06 05:23:18] - Device: [2]	Iter: [2][0/313]	Loss 2.216 (2.216)	Prec@1 0.195 (0.195)	
+[2024/11/06 05:23:21] - Device: [2]	Iter: [2][150/313]	Loss 2.149 (2.198)	Prec@1 0.219 (0.181)	
+[2024/11/06 05:23:23] - Device: [2]	Iter: [2][300/313]	Loss 2.139 (2.185)	Prec@1 0.188 (0.191)	
+[2024/11/06 05:23:24] - Val Loss 2.1594, Val Accuracy 0.1960
+[2024/11/06 05:23:26] - Model saved at epoch 2 with best val accuracy 0.1960
+[2024/11/06 05:23:27] - epoch 3 lr 1.000000e-05
+[2024/11/06 05:23:28] - Device: [2]	Iter: [3][0/313]	Loss 2.153 (2.153)	Prec@1 0.195 (0.195)	
+[2024/11/06 05:23:30] - Device: [2]	Iter: [3][150/313]	Loss 2.153 (2.143)	Prec@1 0.195 (0.217)	
+[2024/11/06 05:23:33] - Device: [2]	Iter: [3][300/313]	Loss 2.157 (2.133)	Prec@1 0.211 (0.217)	
+[2024/11/06 05:23:34] - Val Loss 2.1090, Val Accuracy 0.2259
+[2024/11/06 05:23:35] - Model saved at epoch 3 with best val accuracy 0.2259
+[2024/11/06 05:23:37] - epoch 4 lr 1.000000e-05
+[2024/11/06 05:23:37] - Device: [2]	Iter: [4][0/313]	Loss 2.134 (2.134)	Prec@1 0.172 (0.172)	
+[2024/11/06 05:23:40] - Device: [2]	Iter: [4][150/313]	Loss 2.039 (2.097)	Prec@1 0.273 (0.232)	
+[2024/11/06 05:23:43] - Device: [2]	Iter: [4][300/313]	Loss 2.021 (2.087)	Prec@1 0.227 (0.235)	
+[2024/11/06 05:23:44] - Val Loss 2.0694, Val Accuracy 0.2398
+[2024/11/06 05:23:45] - Model saved at epoch 4 with best val accuracy 0.2398
+[2024/11/06 05:23:47] - epoch 5 lr 1.000000e-05
+[2024/11/06 05:23:47] - Device: [2]	Iter: [5][0/313]	Loss 2.055 (2.055)	Prec@1 0.250 (0.250)	
+[2024/11/06 05:23:50] - Device: [2]	Iter: [5][150/313]	Loss 2.041 (2.052)	Prec@1 0.219 (0.255)	
+[2024/11/06 05:23:52] - Device: [2]	Iter: [5][300/313]	Loss 2.008 (2.044)	Prec@1 0.258 (0.255)	
+[2024/11/06 05:23:54] - Val Loss 2.0246, Val Accuracy 0.2627
+[2024/11/06 05:23:55] - Model saved at epoch 5 with best val accuracy 0.2627
+[2024/11/06 05:23:57] - epoch 6 lr 1.000000e-05
+[2024/11/06 05:23:57] - Device: [2]	Iter: [6][0/313]	Loss 1.947 (1.947)	Prec@1 0.344 (0.344)	
+[2024/11/06 05:23:59] - Device: [2]	Iter: [6][150/313]	Loss 2.019 (2.011)	Prec@1 0.273 (0.267)	
+[2024/11/06 05:24:02] - Device: [2]	Iter: [6][300/313]	Loss 1.984 (2.006)	Prec@1 0.305 (0.269)	
+[2024/11/06 05:24:03] - Val Loss 1.9903, Val Accuracy 0.2754
+[2024/11/06 05:24:05] - Model saved at epoch 6 with best val accuracy 0.2754
+[2024/11/06 05:24:07] - epoch 7 lr 1.000000e-05
+[2024/11/06 05:24:07] - Device: [2]	Iter: [7][0/313]	Loss 1.995 (1.995)	Prec@1 0.258 (0.258)	
+[2024/11/06 05:24:09] - Device: [2]	Iter: [7][150/313]	Loss 1.917 (1.978)	Prec@1 0.328 (0.280)	
+[2024/11/06 05:24:12] - Device: [2]	Iter: [7][300/313]	Loss 1.898 (1.974)	Prec@1 0.305 (0.279)	
+[2024/11/06 05:24:13] - Val Loss 1.9639, Val Accuracy 0.2847
+[2024/11/06 05:24:14] - Model saved at epoch 7 with best val accuracy 0.2847
+[2024/11/06 05:24:15] - epoch 8 lr 1.000000e-05
+[2024/11/06 05:24:15] - Device: [2]	Iter: [8][0/313]	Loss 1.962 (1.962)	Prec@1 0.289 (0.289)	
+[2024/11/06 05:24:18] - Device: [2]	Iter: [8][150/313]	Loss 1.899 (1.956)	Prec@1 0.352 (0.279)	
+[2024/11/06 05:24:21] - Device: [2]	Iter: [8][300/313]	Loss 1.877 (1.949)	Prec@1 0.359 (0.283)	
+[2024/11/06 05:24:22] - Val Loss 1.9325, Val Accuracy 0.2940
+[2024/11/06 05:24:23] - Model saved at epoch 8 with best val accuracy 0.2940
+[2024/11/06 05:24:23] - epoch 9 lr 1.000000e-05
+[2024/11/06 05:24:24] - Device: [2]	Iter: [9][0/313]	Loss 1.919 (1.919)	Prec@1 0.258 (0.258)	
+[2024/11/06 05:24:26] - Device: [2]	Iter: [9][150/313]	Loss 1.877 (1.926)	Prec@1 0.320 (0.296)	
+[2024/11/06 05:24:29] - Device: [2]	Iter: [9][300/313]	Loss 1.821 (1.921)	Prec@1 0.320 (0.298)	
+[2024/11/06 05:24:30] - Val Loss 1.9050, Val Accuracy 0.3012
+[2024/11/06 05:24:31] - Model saved at epoch 9 with best val accuracy 0.3012
+[2024/11/06 05:24:32] - epoch 10 lr 1.000000e-05
+[2024/11/06 05:24:32] - Device: [2]	Iter: [10][0/313]	Loss 1.946 (1.946)	Prec@1 0.289 (0.289)	
+[2024/11/06 05:24:35] - Device: [2]	Iter: [10][150/313]	Loss 1.854 (1.896)	Prec@1 0.344 (0.305)	
+[2024/11/06 05:24:37] - Device: [2]	Iter: [10][300/313]	Loss 1.867 (1.896)	Prec@1 0.312 (0.303)	
+[2024/11/06 05:24:39] - Val Loss 1.8816, Val Accuracy 0.3147
+[2024/11/06 05:24:39] - Model saved at epoch 10 with best val accuracy 0.3147
+[2024/11/06 05:24:40] - epoch 11 lr 1.000000e-05
+[2024/11/06 05:24:41] - Device: [2]	Iter: [11][0/313]	Loss 1.856 (1.856)	Prec@1 0.289 (0.289)	
+[2024/11/06 05:24:43] - Device: [2]	Iter: [11][150/313]	Loss 1.956 (1.878)	Prec@1 0.281 (0.307)	
+[2024/11/06 05:24:46] - Device: [2]	Iter: [11][300/313]	Loss 1.801 (1.876)	Prec@1 0.305 (0.309)	
+[2024/11/06 05:24:47] - Val Loss 1.8620, Val Accuracy 0.3191
+[2024/11/06 05:24:48] - Model saved at epoch 11 with best val accuracy 0.3191
+[2024/11/06 05:24:49] - epoch 12 lr 1.000000e-05
+[2024/11/06 05:24:49] - Device: [2]	Iter: [12][0/313]	Loss 1.817 (1.817)	Prec@1 0.383 (0.383)	
+[2024/11/06 05:24:52] - Device: [2]	Iter: [12][150/313]	Loss 1.831 (1.857)	Prec@1 0.344 (0.314)	
+[2024/11/06 05:24:55] - Device: [2]	Iter: [12][300/313]	Loss 1.847 (1.851)	Prec@1 0.383 (0.319)	
+[2024/11/06 05:24:56] - Val Loss 1.8403, Val Accuracy 0.3270
+[2024/11/06 05:24:57] - Model saved at epoch 12 with best val accuracy 0.3270
+[2024/11/06 05:24:58] - epoch 13 lr 1.000000e-05
+[2024/11/06 05:24:58] - Device: [2]	Iter: [13][0/313]	Loss 1.882 (1.882)	Prec@1 0.320 (0.320)	
+[2024/11/06 05:25:00] - Device: [2]	Iter: [13][150/313]	Loss 1.820 (1.836)	Prec@1 0.352 (0.323)	
+[2024/11/06 05:25:03] - Device: [2]	Iter: [13][300/313]	Loss 1.804 (1.832)	Prec@1 0.391 (0.327)	
+[2024/11/06 05:25:04] - Val Loss 1.8185, Val Accuracy 0.3292
+[2024/11/06 05:25:05] - Model saved at epoch 13 with best val accuracy 0.3292
+[2024/11/06 05:25:06] - epoch 14 lr 1.000000e-05
+[2024/11/06 05:25:06] - Device: [2]	Iter: [14][0/313]	Loss 1.815 (1.815)	Prec@1 0.344 (0.344)	
+[2024/11/06 05:25:08] - Device: [2]	Iter: [14][150/313]	Loss 1.737 (1.813)	Prec@1 0.391 (0.331)	
+[2024/11/06 05:25:11] - Device: [2]	Iter: [14][300/313]	Loss 1.836 (1.810)	Prec@1 0.320 (0.333)	
+[2024/11/06 05:25:12] - Val Loss 1.7988, Val Accuracy 0.3331
+[2024/11/06 05:25:13] - Model saved at epoch 14 with best val accuracy 0.3331
+[2024/11/06 05:25:14] - epoch 15 lr 1.000000e-05
+[2024/11/06 05:25:14] - Device: [2]	Iter: [15][0/313]	Loss 1.759 (1.759)	Prec@1 0.258 (0.258)	
+[2024/11/06 05:25:17] - Device: [2]	Iter: [15][150/313]	Loss 1.763 (1.797)	Prec@1 0.352 (0.338)	
+[2024/11/06 05:25:19] - Device: [2]	Iter: [15][300/313]	Loss 1.747 (1.794)	Prec@1 0.375 (0.337)	
+[2024/11/06 05:25:21] - Val Loss 1.7799, Val Accuracy 0.3448
+[2024/11/06 05:25:22] - Model saved at epoch 15 with best val accuracy 0.3448
+[2024/11/06 05:25:22] - epoch 16 lr 1.000000e-05
+[2024/11/06 05:25:23] - Device: [2]	Iter: [16][0/313]	Loss 1.753 (1.753)	Prec@1 0.336 (0.336)	
+[2024/11/06 05:25:25] - Device: [2]	Iter: [16][150/313]	Loss 1.706 (1.780)	Prec@1 0.367 (0.350)	
+[2024/11/06 05:25:28] - Device: [2]	Iter: [16][300/313]	Loss 1.809 (1.777)	Prec@1 0.305 (0.346)	
+[2024/11/06 05:25:29] - Val Loss 1.7629, Val Accuracy 0.3529
+[2024/11/06 05:25:30] - Model saved at epoch 16 with best val accuracy 0.3529
+[2024/11/06 05:25:31] - epoch 17 lr 1.000000e-05
+[2024/11/06 05:25:31] - Device: [2]	Iter: [17][0/313]	Loss 1.734 (1.734)	Prec@1 0.305 (0.305)	
+[2024/11/06 05:25:34] - Device: [2]	Iter: [17][150/313]	Loss 1.741 (1.760)	Prec@1 0.359 (0.346)	
+[2024/11/06 05:25:37] - Device: [2]	Iter: [17][300/313]	Loss 1.785 (1.759)	Prec@1 0.344 (0.349)	
+[2024/11/06 05:25:38] - Val Loss 1.7508, Val Accuracy 0.3605
+[2024/11/06 05:25:39] - Model saved at epoch 17 with best val accuracy 0.3605
+[2024/11/06 05:25:40] - epoch 18 lr 1.000000e-05
+[2024/11/06 05:25:40] - Device: [2]	Iter: [18][0/313]	Loss 1.781 (1.781)	Prec@1 0.352 (0.352)	
+[2024/11/06 05:25:42] - Device: [2]	Iter: [18][150/313]	Loss 1.693 (1.744)	Prec@1 0.414 (0.352)	
+[2024/11/06 05:25:45] - Device: [2]	Iter: [18][300/313]	Loss 1.669 (1.746)	Prec@1 0.445 (0.353)	
+[2024/11/06 05:25:46] - Val Loss 1.7371, Val Accuracy 0.3573
+[2024/11/06 05:25:47] - epoch 19 lr 1.000000e-05
+[2024/11/06 05:25:47] - Device: [2]	Iter: [19][0/313]	Loss 1.711 (1.711)	Prec@1 0.375 (0.375)	
+[2024/11/06 05:25:50] - Device: [2]	Iter: [19][150/313]	Loss 1.710 (1.735)	Prec@1 0.344 (0.358)	
+[2024/11/06 05:25:52] - Device: [2]	Iter: [19][300/313]	Loss 1.679 (1.730)	Prec@1 0.344 (0.360)	
+[2024/11/06 05:25:53] - Val Loss 1.7207, Val Accuracy 0.3643
+[2024/11/06 05:25:54] - Model saved at epoch 19 with best val accuracy 0.3643
+[2024/11/06 05:25:55] - epoch 20 lr 1.000000e-05
+[2024/11/06 05:25:55] - Device: [2]	Iter: [20][0/313]	Loss 1.720 (1.720)	Prec@1 0.406 (0.406)	
+[2024/11/06 05:25:58] - Device: [2]	Iter: [20][150/313]	Loss 1.744 (1.718)	Prec@1 0.352 (0.363)	
+[2024/11/06 05:26:01] - Device: [2]	Iter: [20][300/313]	Loss 1.808 (1.717)	Prec@1 0.305 (0.365)	
+[2024/11/06 05:26:02] - Val Loss 1.7095, Val Accuracy 0.3705
+[2024/11/06 05:26:03] - Model saved at epoch 20 with best val accuracy 0.3705
+[2024/11/06 05:26:04] - epoch 21 lr 1.000000e-05
+[2024/11/06 05:26:04] - Device: [2]	Iter: [21][0/313]	Loss 1.670 (1.670)	Prec@1 0.414 (0.414)	
+[2024/11/06 05:26:06] - Device: [2]	Iter: [21][150/313]	Loss 1.676 (1.708)	Prec@1 0.438 (0.371)	
+[2024/11/06 05:26:09] - Device: [2]	Iter: [21][300/313]	Loss 1.621 (1.704)	Prec@1 0.375 (0.371)	
+[2024/11/06 05:26:10] - Val Loss 1.6954, Val Accuracy 0.3790
+[2024/11/06 05:26:11] - Model saved at epoch 21 with best val accuracy 0.3790
+[2024/11/06 05:26:12] - epoch 22 lr 1.000000e-05
+[2024/11/06 05:26:12] - Device: [2]	Iter: [22][0/313]	Loss 1.705 (1.705)	Prec@1 0.359 (0.359)	
+[2024/11/06 05:26:15] - Device: [2]	Iter: [22][150/313]	Loss 1.689 (1.696)	Prec@1 0.383 (0.372)	
+[2024/11/06 05:26:18] - Device: [2]	Iter: [22][300/313]	Loss 1.653 (1.693)	Prec@1 0.383 (0.372)	
+[2024/11/06 05:26:19] - Val Loss 1.6881, Val Accuracy 0.3727
+[2024/11/06 05:26:20] - epoch 23 lr 1.000000e-05
+[2024/11/06 05:26:20] - Device: [2]	Iter: [23][0/313]	Loss 1.701 (1.701)	Prec@1 0.344 (0.344)	
+[2024/11/06 05:26:22] - Device: [2]	Iter: [23][150/313]	Loss 1.607 (1.674)	Prec@1 0.398 (0.380)	
+[2024/11/06 05:26:25] - Device: [2]	Iter: [23][300/313]	Loss 1.667 (1.676)	Prec@1 0.367 (0.379)	
+[2024/11/06 05:26:26] - Val Loss 1.6728, Val Accuracy 0.3798
+[2024/11/06 05:26:27] - Model saved at epoch 23 with best val accuracy 0.3798
+[2024/11/06 05:26:28] - epoch 24 lr 1.000000e-05
+[2024/11/06 05:26:28] - Device: [2]	Iter: [24][0/313]	Loss 1.660 (1.660)	Prec@1 0.391 (0.391)	
+[2024/11/06 05:26:31] - Device: [2]	Iter: [24][150/313]	Loss 1.651 (1.666)	Prec@1 0.344 (0.384)	
+[2024/11/06 05:26:33] - Device: [2]	Iter: [24][300/313]	Loss 1.677 (1.668)	Prec@1 0.391 (0.382)	
+[2024/11/06 05:26:34] - Val Loss 1.6701, Val Accuracy 0.3873
+[2024/11/06 05:26:35] - Model saved at epoch 24 with best val accuracy 0.3873
+[2024/11/06 05:26:36] - epoch 25 lr 1.000000e-05
+[2024/11/06 05:26:36] - Device: [2]	Iter: [25][0/313]	Loss 1.735 (1.735)	Prec@1 0.312 (0.312)	
+[2024/11/06 05:26:39] - Device: [2]	Iter: [25][150/313]	Loss 1.668 (1.660)	Prec@1 0.422 (0.385)	
+[2024/11/06 05:26:42] - Device: [2]	Iter: [25][300/313]	Loss 1.656 (1.656)	Prec@1 0.289 (0.387)	
+[2024/11/06 05:26:43] - Val Loss 1.6520, Val Accuracy 0.3937
+[2024/11/06 05:26:44] - Model saved at epoch 25 with best val accuracy 0.3937
+[2024/11/06 05:26:45] - epoch 26 lr 1.000000e-05
+[2024/11/06 05:26:45] - Device: [2]	Iter: [26][0/313]	Loss 1.711 (1.711)	Prec@1 0.352 (0.352)	
+[2024/11/06 05:26:47] - Device: [2]	Iter: [26][150/313]	Loss 1.646 (1.652)	Prec@1 0.352 (0.386)	
+[2024/11/06 05:26:50] - Device: [2]	Iter: [26][300/313]	Loss 1.745 (1.651)	Prec@1 0.344 (0.387)	
+[2024/11/06 05:26:51] - Val Loss 1.6422, Val Accuracy 0.3938
+[2024/11/06 05:26:52] - Model saved at epoch 26 with best val accuracy 0.3938
+[2024/11/06 05:26:53] - epoch 27 lr 1.000000e-05
+[2024/11/06 05:26:53] - Device: [2]	Iter: [27][0/313]	Loss 1.776 (1.776)	Prec@1 0.320 (0.320)	
+[2024/11/06 05:26:56] - Device: [2]	Iter: [27][150/313]	Loss 1.604 (1.641)	Prec@1 0.422 (0.387)	
+[2024/11/06 05:26:59] - Device: [2]	Iter: [27][300/313]	Loss 1.609 (1.638)	Prec@1 0.430 (0.392)	
+[2024/11/06 05:27:00] - Val Loss 1.6360, Val Accuracy 0.3974
+[2024/11/06 05:27:00] - Model saved at epoch 27 with best val accuracy 0.3974
+[2024/11/06 05:27:01] - epoch 28 lr 1.000000e-05
+[2024/11/06 05:27:02] - Device: [2]	Iter: [28][0/313]	Loss 1.612 (1.612)	Prec@1 0.375 (0.375)	
+[2024/11/06 05:27:04] - Device: [2]	Iter: [28][150/313]	Loss 1.566 (1.634)	Prec@1 0.445 (0.396)	
+[2024/11/06 05:27:07] - Device: [2]	Iter: [28][300/313]	Loss 1.642 (1.632)	Prec@1 0.375 (0.393)	
+[2024/11/06 05:27:08] - Val Loss 1.6283, Val Accuracy 0.3988
+[2024/11/06 05:27:09] - Model saved at epoch 28 with best val accuracy 0.3988
+[2024/11/06 05:27:10] - epoch 29 lr 1.000000e-05
+[2024/11/06 05:27:10] - Device: [2]	Iter: [29][0/313]	Loss 1.549 (1.549)	Prec@1 0.414 (0.414)	
+[2024/11/06 05:27:13] - Device: [2]	Iter: [29][150/313]	Loss 1.711 (1.625)	Prec@1 0.352 (0.397)	
+[2024/11/06 05:27:15] - Device: [2]	Iter: [29][300/313]	Loss 1.586 (1.619)	Prec@1 0.398 (0.399)	
+[2024/11/06 05:27:16] - Val Loss 1.6219, Val Accuracy 0.3948
+[2024/11/06 05:27:17] - epoch 30 lr 1.000000e-05
+[2024/11/06 05:27:18] - Device: [2]	Iter: [30][0/313]	Loss 1.635 (1.635)	Prec@1 0.430 (0.430)	
+[2024/11/06 05:27:20] - Device: [2]	Iter: [30][150/313]	Loss 1.689 (1.619)	Prec@1 0.359 (0.399)	
+[2024/11/06 05:27:23] - Device: [2]	Iter: [30][300/313]	Loss 1.562 (1.612)	Prec@1 0.391 (0.402)	
+[2024/11/06 05:27:24] - Val Loss 1.6088, Val Accuracy 0.4057
+[2024/11/06 05:27:25] - Model saved at epoch 30 with best val accuracy 0.4057
+[2024/11/06 05:27:26] - epoch 31 lr 1.000000e-05
+[2024/11/06 05:27:26] - Device: [2]	Iter: [31][0/313]	Loss 1.556 (1.556)	Prec@1 0.438 (0.438)	
+[2024/11/06 05:27:28] - Device: [2]	Iter: [31][150/313]	Loss 1.636 (1.607)	Prec@1 0.359 (0.407)	
+[2024/11/06 05:27:31] - Device: [2]	Iter: [31][300/313]	Loss 1.652 (1.604)	Prec@1 0.367 (0.406)	
+[2024/11/06 05:27:32] - Val Loss 1.6029, Val Accuracy 0.4112
+[2024/11/06 05:27:33] - Model saved at epoch 31 with best val accuracy 0.4112
+[2024/11/06 05:27:34] - epoch 32 lr 1.000000e-05
+[2024/11/06 05:27:34] - Device: [2]	Iter: [32][0/313]	Loss 1.591 (1.591)	Prec@1 0.406 (0.406)	
+[2024/11/06 05:27:37] - Device: [2]	Iter: [32][150/313]	Loss 1.505 (1.595)	Prec@1 0.453 (0.411)	
+[2024/11/06 05:27:40] - Device: [2]	Iter: [32][300/313]	Loss 1.616 (1.594)	Prec@1 0.422 (0.409)	
+[2024/11/06 05:27:41] - Val Loss 1.5913, Val Accuracy 0.4128
+[2024/11/06 05:27:41] - Model saved at epoch 32 with best val accuracy 0.4128
+[2024/11/06 05:27:42] - epoch 33 lr 1.000000e-05
+[2024/11/06 05:27:43] - Device: [2]	Iter: [33][0/313]	Loss 1.558 (1.558)	Prec@1 0.438 (0.438)	
+[2024/11/06 05:27:45] - Device: [2]	Iter: [33][150/313]	Loss 1.479 (1.589)	Prec@1 0.438 (0.414)	
+[2024/11/06 05:27:48] - Device: [2]	Iter: [33][300/313]	Loss 1.640 (1.585)	Prec@1 0.391 (0.414)	
+[2024/11/06 05:27:49] - Val Loss 1.5852, Val Accuracy 0.4160
+[2024/11/06 05:27:50] - Model saved at epoch 33 with best val accuracy 0.4160
+[2024/11/06 05:27:51] - epoch 34 lr 1.000000e-05
+[2024/11/06 05:27:51] - Device: [2]	Iter: [34][0/313]	Loss 1.554 (1.554)	Prec@1 0.398 (0.398)	
+[2024/11/06 05:27:54] - Device: [2]	Iter: [34][150/313]	Loss 1.659 (1.573)	Prec@1 0.398 (0.412)	
+[2024/11/06 05:27:56] - Device: [2]	Iter: [34][300/313]	Loss 1.557 (1.578)	Prec@1 0.398 (0.414)	
+[2024/11/06 05:27:57] - Val Loss 1.5759, Val Accuracy 0.4159
+[2024/11/06 05:27:58] - epoch 35 lr 1.000000e-05
+[2024/11/06 05:27:58] - Device: [2]	Iter: [35][0/313]	Loss 1.545 (1.545)	Prec@1 0.422 (0.422)	
+[2024/11/06 05:28:01] - Device: [2]	Iter: [35][150/313]	Loss 1.553 (1.568)	Prec@1 0.398 (0.421)	
+[2024/11/06 05:28:04] - Device: [2]	Iter: [35][300/313]	Loss 1.566 (1.569)	Prec@1 0.445 (0.421)	
+[2024/11/06 05:28:05] - Val Loss 1.5674, Val Accuracy 0.4214
+[2024/11/06 05:28:06] - Model saved at epoch 35 with best val accuracy 0.4214
+[2024/11/06 05:28:07] - epoch 36 lr 1.000000e-05
+[2024/11/06 05:28:07] - Device: [2]	Iter: [36][0/313]	Loss 1.432 (1.432)	Prec@1 0.477 (0.477)	
+[2024/11/06 05:28:09] - Device: [2]	Iter: [36][150/313]	Loss 1.538 (1.561)	Prec@1 0.367 (0.420)	
+[2024/11/06 05:28:12] - Device: [2]	Iter: [36][300/313]	Loss 1.632 (1.561)	Prec@1 0.414 (0.422)	
+[2024/11/06 05:28:13] - Val Loss 1.5623, Val Accuracy 0.4205
+[2024/11/06 05:28:14] - epoch 37 lr 1.000000e-05
+[2024/11/06 05:28:14] - Device: [2]	Iter: [37][0/313]	Loss 1.600 (1.600)	Prec@1 0.438 (0.438)	
+[2024/11/06 05:28:17] - Device: [2]	Iter: [37][150/313]	Loss 1.515 (1.558)	Prec@1 0.375 (0.419)	
+[2024/11/06 05:28:20] - Device: [2]	Iter: [37][300/313]	Loss 1.552 (1.552)	Prec@1 0.477 (0.425)	
+[2024/11/06 05:28:21] - Val Loss 1.5542, Val Accuracy 0.4189
+[2024/11/06 05:28:22] - epoch 38 lr 1.000000e-05
+[2024/11/06 05:28:22] - Device: [2]	Iter: [38][0/313]	Loss 1.668 (1.668)	Prec@1 0.414 (0.414)	
+[2024/11/06 05:28:24] - Device: [2]	Iter: [38][150/313]	Loss 1.560 (1.551)	Prec@1 0.461 (0.427)	
+[2024/11/06 05:28:27] - Device: [2]	Iter: [38][300/313]	Loss 1.429 (1.546)	Prec@1 0.438 (0.430)	
+[2024/11/06 05:28:28] - Val Loss 1.5443, Val Accuracy 0.4289
+[2024/11/06 05:28:29] - Model saved at epoch 38 with best val accuracy 0.4289
+[2024/11/06 05:28:30] - epoch 39 lr 1.000000e-05
+[2024/11/06 05:28:30] - Device: [2]	Iter: [39][0/313]	Loss 1.566 (1.566)	Prec@1 0.422 (0.422)	
+[2024/11/06 05:28:33] - Device: [2]	Iter: [39][150/313]	Loss 1.575 (1.542)	Prec@1 0.391 (0.429)	
+[2024/11/06 05:28:35] - Device: [2]	Iter: [39][300/313]	Loss 1.576 (1.541)	Prec@1 0.398 (0.429)	
+[2024/11/06 05:28:36] - Val Loss 1.5441, Val Accuracy 0.4266
+[2024/11/06 05:28:37] - epoch 40 lr 1.000000e-05
+[2024/11/06 05:28:38] - Device: [2]	Iter: [40][0/313]	Loss 1.537 (1.537)	Prec@1 0.492 (0.492)	
+[2024/11/06 05:28:40] - Device: [2]	Iter: [40][150/313]	Loss 1.491 (1.528)	Prec@1 0.445 (0.436)	
+[2024/11/06 05:28:43] - Device: [2]	Iter: [40][300/313]	Loss 1.508 (1.534)	Prec@1 0.461 (0.433)	
+[2024/11/06 05:28:44] - Val Loss 1.5322, Val Accuracy 0.4360
+[2024/11/06 05:28:45] - Model saved at epoch 40 with best val accuracy 0.4360
+[2024/11/06 05:28:46] - epoch 41 lr 1.000000e-05
+[2024/11/06 05:28:46] - Device: [2]	Iter: [41][0/313]	Loss 1.496 (1.496)	Prec@1 0.555 (0.555)	
+[2024/11/06 05:28:49] - Device: [2]	Iter: [41][150/313]	Loss 1.642 (1.530)	Prec@1 0.375 (0.434)	
+[2024/11/06 05:28:51] - Device: [2]	Iter: [41][300/313]	Loss 1.479 (1.526)	Prec@1 0.445 (0.435)	
+[2024/11/06 05:28:52] - Val Loss 1.5246, Val Accuracy 0.4365
+[2024/11/06 05:28:53] - Model saved at epoch 41 with best val accuracy 0.4365
+[2024/11/06 05:28:54] - epoch 42 lr 1.000000e-05
+[2024/11/06 05:28:54] - Device: [2]	Iter: [42][0/313]	Loss 1.547 (1.547)	Prec@1 0.422 (0.422)	
+[2024/11/06 05:28:57] - Device: [2]	Iter: [42][150/313]	Loss 1.407 (1.520)	Prec@1 0.500 (0.434)	
+[2024/11/06 05:29:00] - Device: [2]	Iter: [42][300/313]	Loss 1.524 (1.518)	Prec@1 0.414 (0.437)	
+[2024/11/06 05:29:01] - Val Loss 1.5180, Val Accuracy 0.4394
+[2024/11/06 05:29:02] - Model saved at epoch 42 with best val accuracy 0.4394
+[2024/11/06 05:29:02] - epoch 43 lr 1.000000e-05
+[2024/11/06 05:29:03] - Device: [2]	Iter: [43][0/313]	Loss 1.507 (1.507)	Prec@1 0.414 (0.414)	
+[2024/11/06 05:29:05] - Device: [2]	Iter: [43][150/313]	Loss 1.484 (1.511)	Prec@1 0.430 (0.438)	
+[2024/11/06 05:29:08] - Device: [2]	Iter: [43][300/313]	Loss 1.578 (1.508)	Prec@1 0.461 (0.441)	
+[2024/11/06 05:29:09] - Val Loss 1.5101, Val Accuracy 0.4393
+[2024/11/06 05:29:10] - epoch 44 lr 1.000000e-05
+[2024/11/06 05:29:10] - Device: [2]	Iter: [44][0/313]	Loss 1.565 (1.565)	Prec@1 0.430 (0.430)	
+[2024/11/06 05:29:13] - Device: [2]	Iter: [44][150/313]	Loss 1.528 (1.502)	Prec@1 0.445 (0.443)	
+[2024/11/06 05:29:15] - Device: [2]	Iter: [44][300/313]	Loss 1.397 (1.505)	Prec@1 0.453 (0.444)	
+[2024/11/06 05:29:16] - Val Loss 1.5045, Val Accuracy 0.4422
+[2024/11/06 05:29:17] - Model saved at epoch 44 with best val accuracy 0.4422
+[2024/11/06 05:29:18] - epoch 45 lr 1.000000e-05
+[2024/11/06 05:29:18] - Device: [2]	Iter: [45][0/313]	Loss 1.535 (1.535)	Prec@1 0.438 (0.438)	
+[2024/11/06 05:29:21] - Device: [2]	Iter: [45][150/313]	Loss 1.479 (1.494)	Prec@1 0.477 (0.448)	
+[2024/11/06 05:29:24] - Device: [2]	Iter: [45][300/313]	Loss 1.496 (1.494)	Prec@1 0.461 (0.449)	
+[2024/11/06 05:29:25] - Val Loss 1.4926, Val Accuracy 0.4489
+[2024/11/06 05:29:26] - Model saved at epoch 45 with best val accuracy 0.4489
+[2024/11/06 05:29:26] - epoch 46 lr 1.000000e-05
+[2024/11/06 05:29:27] - Device: [2]	Iter: [46][0/313]	Loss 1.536 (1.536)	Prec@1 0.367 (0.367)	
+[2024/11/06 05:29:29] - Device: [2]	Iter: [46][150/313]	Loss 1.482 (1.484)	Prec@1 0.484 (0.454)	
+[2024/11/06 05:29:32] - Device: [2]	Iter: [46][300/313]	Loss 1.557 (1.486)	Prec@1 0.469 (0.452)	
+[2024/11/06 05:29:33] - Val Loss 1.4891, Val Accuracy 0.4525
+[2024/11/06 05:29:34] - Model saved at epoch 46 with best val accuracy 0.4525
+[2024/11/06 05:29:35] - epoch 47 lr 1.000000e-05
+[2024/11/06 05:29:36] - Device: [2]	Iter: [47][0/313]	Loss 1.499 (1.499)	Prec@1 0.492 (0.492)	
+[2024/11/06 05:29:38] - Device: [2]	Iter: [47][150/313]	Loss 1.444 (1.485)	Prec@1 0.469 (0.457)	
+[2024/11/06 05:29:41] - Device: [2]	Iter: [47][300/313]	Loss 1.456 (1.484)	Prec@1 0.422 (0.456)	
+[2024/11/06 05:29:42] - Val Loss 1.4878, Val Accuracy 0.4486
+[2024/11/06 05:29:43] - epoch 48 lr 1.000000e-05
+[2024/11/06 05:29:43] - Device: [2]	Iter: [48][0/313]	Loss 1.461 (1.461)	Prec@1 0.453 (0.453)	
+[2024/11/06 05:29:46] - Device: [2]	Iter: [48][150/313]	Loss 1.520 (1.471)	Prec@1 0.469 (0.459)	
+[2024/11/06 05:29:49] - Device: [2]	Iter: [48][300/313]	Loss 1.510 (1.476)	Prec@1 0.453 (0.456)	
+[2024/11/06 05:29:50] - Val Loss 1.4778, Val Accuracy 0.4543
+[2024/11/06 05:29:51] - Model saved at epoch 48 with best val accuracy 0.4543
+[2024/11/06 05:29:52] - epoch 49 lr 1.000000e-05
+[2024/11/06 05:29:52] - Device: [2]	Iter: [49][0/313]	Loss 1.567 (1.567)	Prec@1 0.367 (0.367)	
+[2024/11/06 05:29:54] - Device: [2]	Iter: [49][150/313]	Loss 1.341 (1.468)	Prec@1 0.555 (0.459)	
+[2024/11/06 05:29:57] - Device: [2]	Iter: [49][300/313]	Loss 1.379 (1.469)	Prec@1 0.469 (0.458)	
+[2024/11/06 05:29:58] - Val Loss 1.4693, Val Accuracy 0.4550
+[2024/11/06 05:29:59] - Model saved at epoch 49 with best val accuracy 0.4550
+[2024/11/06 05:30:00] - epoch 50 lr 1.000000e-05
+[2024/11/06 05:30:00] - Device: [2]	Iter: [50][0/313]	Loss 1.407 (1.407)	Prec@1 0.461 (0.461)	
+[2024/11/06 05:30:03] - Device: [2]	Iter: [50][150/313]	Loss 1.359 (1.464)	Prec@1 0.492 (0.455)	
+[2024/11/06 05:30:05] - Device: [2]	Iter: [50][300/313]	Loss 1.632 (1.463)	Prec@1 0.383 (0.458)	
+[2024/11/06 05:30:06] - Val Loss 1.4618, Val Accuracy 0.4588
+[2024/11/06 05:30:07] - Model saved at epoch 50 with best val accuracy 0.4588
+[2024/11/06 05:30:08] - epoch 51 lr 1.000000e-05
+[2024/11/06 05:30:08] - Device: [2]	Iter: [51][0/313]	Loss 1.382 (1.382)	Prec@1 0.484 (0.484)	
+[2024/11/06 05:30:11] - Device: [2]	Iter: [51][150/313]	Loss 1.468 (1.446)	Prec@1 0.516 (0.464)	
+[2024/11/06 05:30:14] - Device: [2]	Iter: [51][300/313]	Loss 1.481 (1.455)	Prec@1 0.438 (0.463)	
+[2024/11/06 05:30:15] - Val Loss 1.4596, Val Accuracy 0.4609
+[2024/11/06 05:30:16] - Model saved at epoch 51 with best val accuracy 0.4609
+[2024/11/06 05:30:17] - epoch 52 lr 1.000000e-05
+[2024/11/06 05:30:17] - Device: [2]	Iter: [52][0/313]	Loss 1.386 (1.386)	Prec@1 0.523 (0.523)	
+[2024/11/06 05:30:19] - Device: [2]	Iter: [52][150/313]	Loss 1.442 (1.445)	Prec@1 0.453 (0.466)	
+[2024/11/06 05:30:22] - Device: [2]	Iter: [52][300/313]	Loss 1.464 (1.450)	Prec@1 0.445 (0.465)	
+[2024/11/06 05:30:23] - Val Loss 1.4565, Val Accuracy 0.4647
+[2024/11/06 05:30:24] - Model saved at epoch 52 with best val accuracy 0.4647
+[2024/11/06 05:30:25] - epoch 53 lr 1.000000e-05
+[2024/11/06 05:30:25] - Device: [2]	Iter: [53][0/313]	Loss 1.355 (1.355)	Prec@1 0.508 (0.508)	
+[2024/11/06 05:30:28] - Device: [2]	Iter: [53][150/313]	Loss 1.503 (1.441)	Prec@1 0.469 (0.473)	
+[2024/11/06 05:30:30] - Device: [2]	Iter: [53][300/313]	Loss 1.413 (1.440)	Prec@1 0.500 (0.472)	
+[2024/11/06 05:30:32] - Val Loss 1.4451, Val Accuracy 0.4632
+[2024/11/06 05:30:32] - epoch 54 lr 1.000000e-05
+[2024/11/06 05:30:33] - Device: [2]	Iter: [54][0/313]	Loss 1.461 (1.461)	Prec@1 0.453 (0.453)	
+[2024/11/06 05:30:35] - Device: [2]	Iter: [54][150/313]	Loss 1.404 (1.435)	Prec@1 0.531 (0.470)	
+[2024/11/06 05:30:38] - Device: [2]	Iter: [54][300/313]	Loss 1.365 (1.432)	Prec@1 0.484 (0.472)	
+[2024/11/06 05:30:39] - Val Loss 1.4381, Val Accuracy 0.4688
+[2024/11/06 05:30:40] - Model saved at epoch 54 with best val accuracy 0.4688
+[2024/11/06 05:30:41] - epoch 55 lr 1.000000e-05
+[2024/11/06 05:30:41] - Device: [2]	Iter: [55][0/313]	Loss 1.463 (1.463)	Prec@1 0.461 (0.461)	
+[2024/11/06 05:30:44] - Device: [2]	Iter: [55][150/313]	Loss 1.448 (1.423)	Prec@1 0.445 (0.477)	
+[2024/11/06 05:30:47] - Device: [2]	Iter: [55][300/313]	Loss 1.422 (1.423)	Prec@1 0.453 (0.476)	
+[2024/11/06 05:30:48] - Val Loss 1.4351, Val Accuracy 0.4764
+[2024/11/06 05:30:48] - Model saved at epoch 55 with best val accuracy 0.4764
+[2024/11/06 05:30:49] - epoch 56 lr 1.000000e-05
+[2024/11/06 05:30:50] - Device: [2]	Iter: [56][0/313]	Loss 1.380 (1.380)	Prec@1 0.453 (0.453)	
+[2024/11/06 05:30:52] - Device: [2]	Iter: [56][150/313]	Loss 1.557 (1.420)	Prec@1 0.391 (0.479)	
+[2024/11/06 05:30:55] - Device: [2]	Iter: [56][300/313]	Loss 1.433 (1.424)	Prec@1 0.453 (0.477)	
+[2024/11/06 05:30:56] - Val Loss 1.4278, Val Accuracy 0.4710
+[2024/11/06 05:30:57] - epoch 57 lr 1.000000e-05
+[2024/11/06 05:30:57] - Device: [2]	Iter: [57][0/313]	Loss 1.386 (1.386)	Prec@1 0.492 (0.492)	
+[2024/11/06 05:31:00] - Device: [2]	Iter: [57][150/313]	Loss 1.572 (1.414)	Prec@1 0.414 (0.482)	
+[2024/11/06 05:31:03] - Device: [2]	Iter: [57][300/313]	Loss 1.619 (1.418)	Prec@1 0.406 (0.481)	
+[2024/11/06 05:31:04] - Val Loss 1.4225, Val Accuracy 0.4721
+[2024/11/06 05:31:05] - epoch 58 lr 1.000000e-05
+[2024/11/06 05:31:05] - Device: [2]	Iter: [58][0/313]	Loss 1.465 (1.465)	Prec@1 0.477 (0.477)	
+[2024/11/06 05:31:08] - Device: [2]	Iter: [58][150/313]	Loss 1.507 (1.412)	Prec@1 0.383 (0.482)	
+[2024/11/06 05:31:10] - Device: [2]	Iter: [58][300/313]	Loss 1.353 (1.410)	Prec@1 0.461 (0.483)	
+[2024/11/06 05:31:11] - Val Loss 1.4162, Val Accuracy 0.4829
+[2024/11/06 05:31:12] - Model saved at epoch 58 with best val accuracy 0.4829
+[2024/11/06 05:31:13] - epoch 59 lr 1.000000e-05
+[2024/11/06 05:31:13] - Device: [2]	Iter: [59][0/313]	Loss 1.466 (1.466)	Prec@1 0.430 (0.430)	
+[2024/11/06 05:31:16] - Device: [2]	Iter: [59][150/313]	Loss 1.302 (1.407)	Prec@1 0.516 (0.478)	
+[2024/11/06 05:31:19] - Device: [2]	Iter: [59][300/313]	Loss 1.426 (1.404)	Prec@1 0.484 (0.482)	
+[2024/11/06 05:31:20] - Val Loss 1.4113, Val Accuracy 0.4865
+[2024/11/06 05:31:21] - Model saved at epoch 59 with best val accuracy 0.4865
+[2024/11/06 05:31:21] - epoch 60 lr 1.000000e-05
+[2024/11/06 05:31:22] - Device: [2]	Iter: [60][0/313]	Loss 1.305 (1.305)	Prec@1 0.484 (0.484)	
+[2024/11/06 05:31:24] - Device: [2]	Iter: [60][150/313]	Loss 1.426 (1.396)	Prec@1 0.492 (0.486)	
+[2024/11/06 05:31:27] - Device: [2]	Iter: [60][300/313]	Loss 1.331 (1.396)	Prec@1 0.414 (0.486)	
+[2024/11/06 05:31:28] - Val Loss 1.4070, Val Accuracy 0.4796
+[2024/11/06 05:31:29] - epoch 61 lr 1.000000e-05
+[2024/11/06 05:31:29] - Device: [2]	Iter: [61][0/313]	Loss 1.306 (1.306)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:31:32] - Device: [2]	Iter: [61][150/313]	Loss 1.250 (1.391)	Prec@1 0.562 (0.486)	
+[2024/11/06 05:31:35] - Device: [2]	Iter: [61][300/313]	Loss 1.318 (1.390)	Prec@1 0.531 (0.488)	
+[2024/11/06 05:31:36] - Val Loss 1.4007, Val Accuracy 0.4864
+[2024/11/06 05:31:37] - epoch 62 lr 1.000000e-05
+[2024/11/06 05:31:37] - Device: [2]	Iter: [62][0/313]	Loss 1.379 (1.379)	Prec@1 0.508 (0.508)	
+[2024/11/06 05:31:40] - Device: [2]	Iter: [62][150/313]	Loss 1.455 (1.382)	Prec@1 0.484 (0.493)	
+[2024/11/06 05:31:42] - Device: [2]	Iter: [62][300/313]	Loss 1.225 (1.382)	Prec@1 0.570 (0.492)	
+[2024/11/06 05:31:43] - Val Loss 1.3888, Val Accuracy 0.4924
+[2024/11/06 05:31:44] - Model saved at epoch 62 with best val accuracy 0.4924
+[2024/11/06 05:31:45] - epoch 63 lr 1.000000e-05
+[2024/11/06 05:31:45] - Device: [2]	Iter: [63][0/313]	Loss 1.341 (1.341)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:31:48] - Device: [2]	Iter: [63][150/313]	Loss 1.598 (1.379)	Prec@1 0.430 (0.497)	
+[2024/11/06 05:31:50] - Device: [2]	Iter: [63][300/313]	Loss 1.291 (1.377)	Prec@1 0.547 (0.496)	
+[2024/11/06 05:31:51] - Val Loss 1.3924, Val Accuracy 0.4897
+[2024/11/06 05:31:52] - epoch 64 lr 1.000000e-05
+[2024/11/06 05:31:53] - Device: [2]	Iter: [64][0/313]	Loss 1.456 (1.456)	Prec@1 0.430 (0.430)	
+[2024/11/06 05:31:55] - Device: [2]	Iter: [64][150/313]	Loss 1.428 (1.378)	Prec@1 0.469 (0.494)	
+[2024/11/06 05:31:58] - Device: [2]	Iter: [64][300/313]	Loss 1.552 (1.373)	Prec@1 0.414 (0.496)	
+[2024/11/06 05:31:59] - Val Loss 1.3853, Val Accuracy 0.4903
+[2024/11/06 05:32:00] - epoch 65 lr 1.000000e-05
+[2024/11/06 05:32:00] - Device: [2]	Iter: [65][0/313]	Loss 1.364 (1.364)	Prec@1 0.523 (0.523)	
+[2024/11/06 05:32:02] - Device: [2]	Iter: [65][150/313]	Loss 1.377 (1.361)	Prec@1 0.453 (0.501)	
+[2024/11/06 05:32:05] - Device: [2]	Iter: [65][300/313]	Loss 1.298 (1.364)	Prec@1 0.516 (0.500)	
+[2024/11/06 05:32:06] - Val Loss 1.3720, Val Accuracy 0.4967
+[2024/11/06 05:32:07] - Model saved at epoch 65 with best val accuracy 0.4967
+[2024/11/06 05:32:08] - epoch 66 lr 1.000000e-05
+[2024/11/06 05:32:08] - Device: [2]	Iter: [66][0/313]	Loss 1.209 (1.209)	Prec@1 0.578 (0.578)	
+[2024/11/06 05:32:11] - Device: [2]	Iter: [66][150/313]	Loss 1.395 (1.356)	Prec@1 0.484 (0.504)	
+[2024/11/06 05:32:13] - Device: [2]	Iter: [66][300/313]	Loss 1.368 (1.365)	Prec@1 0.523 (0.498)	
+[2024/11/06 05:32:14] - Val Loss 1.3758, Val Accuracy 0.4957
+[2024/11/06 05:32:15] - epoch 67 lr 1.000000e-05
+[2024/11/06 05:32:15] - Device: [2]	Iter: [67][0/313]	Loss 1.289 (1.289)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:32:18] - Device: [2]	Iter: [67][150/313]	Loss 1.355 (1.354)	Prec@1 0.531 (0.500)	
+[2024/11/06 05:32:21] - Device: [2]	Iter: [67][300/313]	Loss 1.463 (1.351)	Prec@1 0.406 (0.503)	
+[2024/11/06 05:32:22] - Val Loss 1.3653, Val Accuracy 0.5028
+[2024/11/06 05:32:23] - Model saved at epoch 67 with best val accuracy 0.5028
+[2024/11/06 05:32:23] - epoch 68 lr 1.000000e-05
+[2024/11/06 05:32:24] - Device: [2]	Iter: [68][0/313]	Loss 1.489 (1.489)	Prec@1 0.484 (0.484)	
+[2024/11/06 05:32:26] - Device: [2]	Iter: [68][150/313]	Loss 1.247 (1.345)	Prec@1 0.625 (0.510)	
+[2024/11/06 05:32:29] - Device: [2]	Iter: [68][300/313]	Loss 1.428 (1.346)	Prec@1 0.430 (0.508)	
+[2024/11/06 05:32:30] - Val Loss 1.3571, Val Accuracy 0.4999
+[2024/11/06 05:32:31] - epoch 69 lr 1.000000e-05
+[2024/11/06 05:32:31] - Device: [2]	Iter: [69][0/313]	Loss 1.311 (1.311)	Prec@1 0.508 (0.508)	
+[2024/11/06 05:32:34] - Device: [2]	Iter: [69][150/313]	Loss 1.265 (1.344)	Prec@1 0.578 (0.510)	
+[2024/11/06 05:32:37] - Device: [2]	Iter: [69][300/313]	Loss 1.316 (1.343)	Prec@1 0.492 (0.508)	
+[2024/11/06 05:32:38] - Val Loss 1.3518, Val Accuracy 0.5047
+[2024/11/06 05:32:38] - Model saved at epoch 69 with best val accuracy 0.5047
+[2024/11/06 05:32:39] - epoch 70 lr 1.000000e-05
+[2024/11/06 05:32:40] - Device: [2]	Iter: [70][0/313]	Loss 1.365 (1.365)	Prec@1 0.508 (0.508)	
+[2024/11/06 05:32:42] - Device: [2]	Iter: [70][150/313]	Loss 1.227 (1.336)	Prec@1 0.594 (0.516)	
+[2024/11/06 05:32:45] - Device: [2]	Iter: [70][300/313]	Loss 1.388 (1.339)	Prec@1 0.508 (0.513)	
+[2024/11/06 05:32:46] - Val Loss 1.3548, Val Accuracy 0.4996
+[2024/11/06 05:32:47] - epoch 71 lr 1.000000e-05
+[2024/11/06 05:32:47] - Device: [2]	Iter: [71][0/313]	Loss 1.360 (1.360)	Prec@1 0.516 (0.516)	
+[2024/11/06 05:32:50] - Device: [2]	Iter: [71][150/313]	Loss 1.377 (1.329)	Prec@1 0.477 (0.517)	
+[2024/11/06 05:32:52] - Device: [2]	Iter: [71][300/313]	Loss 1.353 (1.329)	Prec@1 0.547 (0.517)	
+[2024/11/06 05:32:53] - Val Loss 1.3478, Val Accuracy 0.5090
+[2024/11/06 05:32:54] - Model saved at epoch 71 with best val accuracy 0.5090
+[2024/11/06 05:32:55] - epoch 72 lr 1.000000e-05
+[2024/11/06 05:32:55] - Device: [2]	Iter: [72][0/313]	Loss 1.206 (1.206)	Prec@1 0.594 (0.594)	
+[2024/11/06 05:32:58] - Device: [2]	Iter: [72][150/313]	Loss 1.497 (1.328)	Prec@1 0.477 (0.513)	
+[2024/11/06 05:33:01] - Device: [2]	Iter: [72][300/313]	Loss 1.266 (1.328)	Prec@1 0.555 (0.514)	
+[2024/11/06 05:33:02] - Val Loss 1.3408, Val Accuracy 0.5133
+[2024/11/06 05:33:03] - Model saved at epoch 72 with best val accuracy 0.5133
+[2024/11/06 05:33:03] - epoch 73 lr 1.000000e-05
+[2024/11/06 05:33:04] - Device: [2]	Iter: [73][0/313]	Loss 1.413 (1.413)	Prec@1 0.484 (0.484)	
+[2024/11/06 05:33:06] - Device: [2]	Iter: [73][150/313]	Loss 1.335 (1.322)	Prec@1 0.445 (0.518)	
+[2024/11/06 05:33:09] - Device: [2]	Iter: [73][300/313]	Loss 1.241 (1.320)	Prec@1 0.531 (0.519)	
+[2024/11/06 05:33:10] - Val Loss 1.3324, Val Accuracy 0.5075
+[2024/11/06 05:33:11] - epoch 74 lr 1.000000e-05
+[2024/11/06 05:33:11] - Device: [2]	Iter: [74][0/313]	Loss 1.229 (1.229)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:33:14] - Device: [2]	Iter: [74][150/313]	Loss 1.273 (1.317)	Prec@1 0.586 (0.518)	
+[2024/11/06 05:33:16] - Device: [2]	Iter: [74][300/313]	Loss 1.196 (1.315)	Prec@1 0.516 (0.520)	
+[2024/11/06 05:33:17] - Val Loss 1.3294, Val Accuracy 0.5147
+[2024/11/06 05:33:18] - Model saved at epoch 74 with best val accuracy 0.5147
+[2024/11/06 05:33:19] - epoch 75 lr 1.000000e-05
+[2024/11/06 05:33:20] - Device: [2]	Iter: [75][0/313]	Loss 1.357 (1.357)	Prec@1 0.516 (0.516)	
+[2024/11/06 05:33:22] - Device: [2]	Iter: [75][150/313]	Loss 1.378 (1.310)	Prec@1 0.531 (0.518)	
+[2024/11/06 05:33:25] - Device: [2]	Iter: [75][300/313]	Loss 1.719 (1.311)	Prec@1 0.453 (0.519)	
+[2024/11/06 05:33:26] - Val Loss 1.3248, Val Accuracy 0.5148
+[2024/11/06 05:33:27] - Model saved at epoch 75 with best val accuracy 0.5148
+[2024/11/06 05:33:28] - epoch 76 lr 1.000000e-05
+[2024/11/06 05:33:28] - Device: [2]	Iter: [76][0/313]	Loss 1.210 (1.210)	Prec@1 0.578 (0.578)	
+[2024/11/06 05:33:31] - Device: [2]	Iter: [76][150/313]	Loss 1.260 (1.303)	Prec@1 0.523 (0.524)	
+[2024/11/06 05:33:33] - Device: [2]	Iter: [76][300/313]	Loss 1.380 (1.304)	Prec@1 0.516 (0.524)	
+[2024/11/06 05:33:34] - Val Loss 1.3181, Val Accuracy 0.5187
+[2024/11/06 05:33:35] - Model saved at epoch 76 with best val accuracy 0.5187
+[2024/11/06 05:33:36] - epoch 77 lr 1.000000e-05
+[2024/11/06 05:33:36] - Device: [2]	Iter: [77][0/313]	Loss 1.304 (1.304)	Prec@1 0.523 (0.523)	
+[2024/11/06 05:33:39] - Device: [2]	Iter: [77][150/313]	Loss 1.160 (1.303)	Prec@1 0.570 (0.524)	
+[2024/11/06 05:33:42] - Device: [2]	Iter: [77][300/313]	Loss 1.363 (1.297)	Prec@1 0.461 (0.526)	
+[2024/11/06 05:33:43] - Val Loss 1.3115, Val Accuracy 0.5236
+[2024/11/06 05:33:44] - Model saved at epoch 77 with best val accuracy 0.5236
+[2024/11/06 05:33:45] - epoch 78 lr 1.000000e-05
+[2024/11/06 05:33:45] - Device: [2]	Iter: [78][0/313]	Loss 1.337 (1.337)	Prec@1 0.492 (0.492)	
+[2024/11/06 05:33:47] - Device: [2]	Iter: [78][150/313]	Loss 1.222 (1.290)	Prec@1 0.539 (0.531)	
+[2024/11/06 05:33:50] - Device: [2]	Iter: [78][300/313]	Loss 1.260 (1.290)	Prec@1 0.539 (0.531)	
+[2024/11/06 05:33:51] - Val Loss 1.3067, Val Accuracy 0.5180
+[2024/11/06 05:33:52] - epoch 79 lr 1.000000e-05
+[2024/11/06 05:33:52] - Device: [2]	Iter: [79][0/313]	Loss 1.310 (1.310)	Prec@1 0.523 (0.523)	
+[2024/11/06 05:33:55] - Device: [2]	Iter: [79][150/313]	Loss 1.322 (1.290)	Prec@1 0.516 (0.530)	
+[2024/11/06 05:33:57] - Device: [2]	Iter: [79][300/313]	Loss 1.295 (1.290)	Prec@1 0.523 (0.528)	
+[2024/11/06 05:33:58] - Val Loss 1.3068, Val Accuracy 0.5220
+[2024/11/06 05:33:59] - epoch 80 lr 1.000000e-05
+[2024/11/06 05:33:59] - Device: [2]	Iter: [80][0/313]	Loss 1.385 (1.385)	Prec@1 0.516 (0.516)	
+[2024/11/06 05:34:02] - Device: [2]	Iter: [80][150/313]	Loss 1.278 (1.285)	Prec@1 0.578 (0.532)	
+[2024/11/06 05:34:05] - Device: [2]	Iter: [80][300/313]	Loss 1.436 (1.287)	Prec@1 0.508 (0.533)	
+[2024/11/06 05:34:06] - Val Loss 1.2990, Val Accuracy 0.5280
+[2024/11/06 05:34:07] - Model saved at epoch 80 with best val accuracy 0.5280
+[2024/11/06 05:34:08] - epoch 81 lr 1.000000e-05
+[2024/11/06 05:34:08] - Device: [2]	Iter: [81][0/313]	Loss 1.172 (1.172)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:34:10] - Device: [2]	Iter: [81][150/313]	Loss 1.242 (1.266)	Prec@1 0.516 (0.541)	
+[2024/11/06 05:34:13] - Device: [2]	Iter: [81][300/313]	Loss 1.357 (1.277)	Prec@1 0.492 (0.536)	
+[2024/11/06 05:34:14] - Val Loss 1.2975, Val Accuracy 0.5280
+[2024/11/06 05:34:15] - epoch 82 lr 1.000000e-05
+[2024/11/06 05:34:15] - Device: [2]	Iter: [82][0/313]	Loss 1.410 (1.410)	Prec@1 0.523 (0.523)	
+[2024/11/06 05:34:18] - Device: [2]	Iter: [82][150/313]	Loss 1.269 (1.280)	Prec@1 0.500 (0.535)	
+[2024/11/06 05:34:21] - Device: [2]	Iter: [82][300/313]	Loss 1.301 (1.274)	Prec@1 0.500 (0.537)	
+[2024/11/06 05:34:22] - Val Loss 1.2932, Val Accuracy 0.5320
+[2024/11/06 05:34:23] - Model saved at epoch 82 with best val accuracy 0.5320
+[2024/11/06 05:34:23] - epoch 83 lr 1.000000e-05
+[2024/11/06 05:34:24] - Device: [2]	Iter: [83][0/313]	Loss 1.234 (1.234)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:34:26] - Device: [2]	Iter: [83][150/313]	Loss 1.192 (1.265)	Prec@1 0.570 (0.538)	
+[2024/11/06 05:34:29] - Device: [2]	Iter: [83][300/313]	Loss 1.087 (1.264)	Prec@1 0.586 (0.539)	
+[2024/11/06 05:34:30] - Val Loss 1.2813, Val Accuracy 0.5307
+[2024/11/06 05:34:31] - epoch 84 lr 1.000000e-05
+[2024/11/06 05:34:31] - Device: [2]	Iter: [84][0/313]	Loss 1.178 (1.178)	Prec@1 0.617 (0.617)	
+[2024/11/06 05:34:34] - Device: [2]	Iter: [84][150/313]	Loss 1.262 (1.263)	Prec@1 0.555 (0.544)	
+[2024/11/06 05:34:36] - Device: [2]	Iter: [84][300/313]	Loss 1.199 (1.260)	Prec@1 0.578 (0.545)	
+[2024/11/06 05:34:38] - Val Loss 1.2847, Val Accuracy 0.5315
+[2024/11/06 05:34:38] - epoch 85 lr 1.000000e-05
+[2024/11/06 05:34:39] - Device: [2]	Iter: [85][0/313]	Loss 1.272 (1.272)	Prec@1 0.555 (0.555)	
+[2024/11/06 05:34:41] - Device: [2]	Iter: [85][150/313]	Loss 1.209 (1.257)	Prec@1 0.547 (0.541)	
+[2024/11/06 05:34:44] - Device: [2]	Iter: [85][300/313]	Loss 1.312 (1.256)	Prec@1 0.484 (0.542)	
+[2024/11/06 05:34:45] - Val Loss 1.2713, Val Accuracy 0.5362
+[2024/11/06 05:34:46] - Model saved at epoch 85 with best val accuracy 0.5362
+[2024/11/06 05:34:47] - epoch 86 lr 1.000000e-05
+[2024/11/06 05:34:47] - Device: [2]	Iter: [86][0/313]	Loss 1.218 (1.218)	Prec@1 0.555 (0.555)	
+[2024/11/06 05:34:50] - Device: [2]	Iter: [86][150/313]	Loss 1.275 (1.257)	Prec@1 0.555 (0.545)	
+[2024/11/06 05:34:52] - Device: [2]	Iter: [86][300/313]	Loss 1.030 (1.256)	Prec@1 0.727 (0.547)	
+[2024/11/06 05:34:54] - Val Loss 1.2628, Val Accuracy 0.5369
+[2024/11/06 05:34:54] - Model saved at epoch 86 with best val accuracy 0.5369
+[2024/11/06 05:34:55] - epoch 87 lr 1.000000e-05
+[2024/11/06 05:34:56] - Device: [2]	Iter: [87][0/313]	Loss 1.309 (1.309)	Prec@1 0.508 (0.508)	
+[2024/11/06 05:34:58] - Device: [2]	Iter: [87][150/313]	Loss 1.314 (1.250)	Prec@1 0.477 (0.546)	
+[2024/11/06 05:35:01] - Device: [2]	Iter: [87][300/313]	Loss 1.280 (1.248)	Prec@1 0.500 (0.547)	
+[2024/11/06 05:35:02] - Val Loss 1.2685, Val Accuracy 0.5393
+[2024/11/06 05:35:02] - Model saved at epoch 87 with best val accuracy 0.5393
+[2024/11/06 05:35:03] - epoch 88 lr 1.000000e-05
+[2024/11/06 05:35:04] - Device: [2]	Iter: [88][0/313]	Loss 1.154 (1.154)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:35:06] - Device: [2]	Iter: [88][150/313]	Loss 1.235 (1.246)	Prec@1 0.578 (0.549)	
+[2024/11/06 05:35:09] - Device: [2]	Iter: [88][300/313]	Loss 1.235 (1.240)	Prec@1 0.500 (0.551)	
+[2024/11/06 05:35:10] - Val Loss 1.2558, Val Accuracy 0.5453
+[2024/11/06 05:35:11] - Model saved at epoch 88 with best val accuracy 0.5453
+[2024/11/06 05:35:12] - epoch 89 lr 1.000000e-05
+[2024/11/06 05:35:12] - Device: [2]	Iter: [89][0/313]	Loss 1.162 (1.162)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:35:14] - Device: [2]	Iter: [89][150/313]	Loss 1.240 (1.236)	Prec@1 0.586 (0.547)	
+[2024/11/06 05:35:17] - Device: [2]	Iter: [89][300/313]	Loss 1.258 (1.238)	Prec@1 0.508 (0.548)	
+[2024/11/06 05:35:18] - Val Loss 1.2586, Val Accuracy 0.5436
+[2024/11/06 05:35:19] - epoch 90 lr 1.000000e-05
+[2024/11/06 05:35:19] - Device: [2]	Iter: [90][0/313]	Loss 1.262 (1.262)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:35:22] - Device: [2]	Iter: [90][150/313]	Loss 1.297 (1.241)	Prec@1 0.516 (0.552)	
+[2024/11/06 05:35:25] - Device: [2]	Iter: [90][300/313]	Loss 1.408 (1.231)	Prec@1 0.422 (0.557)	
+[2024/11/06 05:35:26] - Val Loss 1.2562, Val Accuracy 0.5432
+[2024/11/06 05:35:26] - epoch 91 lr 1.000000e-05
+[2024/11/06 05:35:27] - Device: [2]	Iter: [91][0/313]	Loss 1.144 (1.144)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:35:29] - Device: [2]	Iter: [91][150/313]	Loss 1.354 (1.229)	Prec@1 0.469 (0.560)	
+[2024/11/06 05:35:32] - Device: [2]	Iter: [91][300/313]	Loss 1.331 (1.225)	Prec@1 0.547 (0.558)	
+[2024/11/06 05:35:33] - Val Loss 1.2519, Val Accuracy 0.5471
+[2024/11/06 05:35:34] - Model saved at epoch 91 with best val accuracy 0.5471
+[2024/11/06 05:35:35] - epoch 92 lr 1.000000e-05
+[2024/11/06 05:35:35] - Device: [2]	Iter: [92][0/313]	Loss 1.248 (1.248)	Prec@1 0.555 (0.555)	
+[2024/11/06 05:35:38] - Device: [2]	Iter: [92][150/313]	Loss 1.244 (1.223)	Prec@1 0.562 (0.554)	
+[2024/11/06 05:35:41] - Device: [2]	Iter: [92][300/313]	Loss 1.186 (1.222)	Prec@1 0.547 (0.556)	
+[2024/11/06 05:35:42] - Val Loss 1.2485, Val Accuracy 0.5439
+[2024/11/06 05:35:42] - epoch 93 lr 1.000000e-05
+[2024/11/06 05:35:43] - Device: [2]	Iter: [93][0/313]	Loss 1.234 (1.234)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:35:45] - Device: [2]	Iter: [93][150/313]	Loss 1.284 (1.218)	Prec@1 0.531 (0.558)	
+[2024/11/06 05:35:48] - Device: [2]	Iter: [93][300/313]	Loss 1.218 (1.221)	Prec@1 0.539 (0.558)	
+[2024/11/06 05:35:49] - Val Loss 1.2363, Val Accuracy 0.5512
+[2024/11/06 05:35:50] - Model saved at epoch 93 with best val accuracy 0.5512
+[2024/11/06 05:35:51] - epoch 94 lr 1.000000e-05
+[2024/11/06 05:35:51] - Device: [2]	Iter: [94][0/313]	Loss 1.222 (1.222)	Prec@1 0.539 (0.539)	
+[2024/11/06 05:35:53] - Device: [2]	Iter: [94][150/313]	Loss 1.161 (1.216)	Prec@1 0.562 (0.559)	
+[2024/11/06 05:35:56] - Device: [2]	Iter: [94][300/313]	Loss 1.290 (1.216)	Prec@1 0.555 (0.562)	
+[2024/11/06 05:35:57] - Val Loss 1.2324, Val Accuracy 0.5532
+[2024/11/06 05:35:58] - Model saved at epoch 94 with best val accuracy 0.5532
+[2024/11/06 05:35:59] - epoch 95 lr 1.000000e-05
+[2024/11/06 05:35:59] - Device: [2]	Iter: [95][0/313]	Loss 1.285 (1.285)	Prec@1 0.492 (0.492)	
+[2024/11/06 05:36:02] - Device: [2]	Iter: [95][150/313]	Loss 1.138 (1.211)	Prec@1 0.586 (0.562)	
+[2024/11/06 05:36:04] - Device: [2]	Iter: [95][300/313]	Loss 1.210 (1.208)	Prec@1 0.578 (0.562)	
+[2024/11/06 05:36:06] - Val Loss 1.2306, Val Accuracy 0.5554
+[2024/11/06 05:36:06] - Model saved at epoch 95 with best val accuracy 0.5554
+[2024/11/06 05:36:07] - epoch 96 lr 1.000000e-05
+[2024/11/06 05:36:08] - Device: [2]	Iter: [96][0/313]	Loss 1.197 (1.197)	Prec@1 0.586 (0.586)	
+[2024/11/06 05:36:10] - Device: [2]	Iter: [96][150/313]	Loss 1.233 (1.222)	Prec@1 0.602 (0.559)	
+[2024/11/06 05:36:13] - Device: [2]	Iter: [96][300/313]	Loss 1.274 (1.206)	Prec@1 0.523 (0.565)	
+[2024/11/06 05:36:14] - Val Loss 1.2251, Val Accuracy 0.5569
+[2024/11/06 05:36:15] - Model saved at epoch 96 with best val accuracy 0.5569
+[2024/11/06 05:36:15] - epoch 97 lr 1.000000e-05
+[2024/11/06 05:36:16] - Device: [2]	Iter: [97][0/313]	Loss 1.229 (1.229)	Prec@1 0.500 (0.500)	
+[2024/11/06 05:36:18] - Device: [2]	Iter: [97][150/313]	Loss 1.264 (1.208)	Prec@1 0.508 (0.564)	
+[2024/11/06 05:36:21] - Device: [2]	Iter: [97][300/313]	Loss 1.195 (1.202)	Prec@1 0.531 (0.566)	
+[2024/11/06 05:36:22] - Val Loss 1.2200, Val Accuracy 0.5591
+[2024/11/06 05:36:23] - Model saved at epoch 97 with best val accuracy 0.5591
+[2024/11/06 05:36:24] - epoch 98 lr 1.000000e-05
+[2024/11/06 05:36:24] - Device: [2]	Iter: [98][0/313]	Loss 1.206 (1.206)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:36:26] - Device: [2]	Iter: [98][150/313]	Loss 1.145 (1.194)	Prec@1 0.609 (0.570)	
+[2024/11/06 05:36:29] - Device: [2]	Iter: [98][300/313]	Loss 1.025 (1.194)	Prec@1 0.703 (0.569)	
+[2024/11/06 05:36:30] - Val Loss 1.2207, Val Accuracy 0.5522
+[2024/11/06 05:36:31] - epoch 99 lr 1.000000e-05
+[2024/11/06 05:36:31] - Device: [2]	Iter: [99][0/313]	Loss 1.126 (1.126)	Prec@1 0.570 (0.570)	
+[2024/11/06 05:36:33] - Device: [2]	Iter: [99][150/313]	Loss 1.258 (1.201)	Prec@1 0.562 (0.564)	
+[2024/11/06 05:36:36] - Device: [2]	Iter: [99][300/313]	Loss 1.200 (1.194)	Prec@1 0.570 (0.567)	
+[2024/11/06 05:36:37] - Val Loss 1.2182, Val Accuracy 0.5546
+[2024/11/06 05:36:38] - epoch 100 lr 1.000000e-05
+[2024/11/06 05:36:38] - Device: [2]	Iter: [100][0/313]	Loss 1.263 (1.263)	Prec@1 0.539 (0.539)	
+[2024/11/06 05:36:41] - Device: [2]	Iter: [100][150/313]	Loss 1.214 (1.180)	Prec@1 0.570 (0.571)	
+[2024/11/06 05:36:43] - Device: [2]	Iter: [100][300/313]	Loss 1.097 (1.185)	Prec@1 0.586 (0.571)	
+[2024/11/06 05:36:44] - Val Loss 1.2132, Val Accuracy 0.5611
+[2024/11/06 05:36:45] - Model saved at epoch 100 with best val accuracy 0.5611
+[2024/11/06 05:36:46] - epoch 101 lr 1.000000e-05
+[2024/11/06 05:36:47] - Device: [2]	Iter: [101][0/313]	Loss 1.012 (1.012)	Prec@1 0.641 (0.641)	
+[2024/11/06 05:36:49] - Device: [2]	Iter: [101][150/313]	Loss 1.224 (1.188)	Prec@1 0.500 (0.570)	
+[2024/11/06 05:36:52] - Device: [2]	Iter: [101][300/313]	Loss 1.189 (1.185)	Prec@1 0.625 (0.572)	
+[2024/11/06 05:36:53] - Val Loss 1.2023, Val Accuracy 0.5616
+[2024/11/06 05:36:54] - Model saved at epoch 101 with best val accuracy 0.5616
+[2024/11/06 05:36:54] - epoch 102 lr 1.000000e-05
+[2024/11/06 05:36:55] - Device: [2]	Iter: [102][0/313]	Loss 1.120 (1.120)	Prec@1 0.586 (0.586)	
+[2024/11/06 05:36:57] - Device: [2]	Iter: [102][150/313]	Loss 1.169 (1.170)	Prec@1 0.523 (0.576)	
+[2024/11/06 05:37:00] - Device: [2]	Iter: [102][300/313]	Loss 1.178 (1.178)	Prec@1 0.570 (0.574)	
+[2024/11/06 05:37:01] - Val Loss 1.1981, Val Accuracy 0.5632
+[2024/11/06 05:37:02] - Model saved at epoch 102 with best val accuracy 0.5632
+[2024/11/06 05:37:03] - epoch 103 lr 1.000000e-05
+[2024/11/06 05:37:03] - Device: [2]	Iter: [103][0/313]	Loss 1.018 (1.018)	Prec@1 0.602 (0.602)	
+[2024/11/06 05:37:05] - Device: [2]	Iter: [103][150/313]	Loss 1.204 (1.174)	Prec@1 0.633 (0.576)	
+[2024/11/06 05:37:08] - Device: [2]	Iter: [103][300/313]	Loss 1.119 (1.175)	Prec@1 0.594 (0.575)	
+[2024/11/06 05:37:09] - Val Loss 1.1948, Val Accuracy 0.5698
+[2024/11/06 05:37:10] - Model saved at epoch 103 with best val accuracy 0.5698
+[2024/11/06 05:37:11] - epoch 104 lr 1.000000e-05
+[2024/11/06 05:37:11] - Device: [2]	Iter: [104][0/313]	Loss 1.219 (1.219)	Prec@1 0.523 (0.523)	
+[2024/11/06 05:37:14] - Device: [2]	Iter: [104][150/313]	Loss 1.273 (1.169)	Prec@1 0.586 (0.575)	
+[2024/11/06 05:37:16] - Device: [2]	Iter: [104][300/313]	Loss 1.239 (1.169)	Prec@1 0.602 (0.576)	
+[2024/11/06 05:37:17] - Val Loss 1.1892, Val Accuracy 0.5727
+[2024/11/06 05:37:18] - Model saved at epoch 104 with best val accuracy 0.5727
+[2024/11/06 05:37:19] - epoch 105 lr 1.000000e-05
+[2024/11/06 05:37:19] - Device: [2]	Iter: [105][0/313]	Loss 1.170 (1.170)	Prec@1 0.586 (0.586)	
+[2024/11/06 05:37:22] - Device: [2]	Iter: [105][150/313]	Loss 1.072 (1.165)	Prec@1 0.617 (0.579)	
+[2024/11/06 05:37:25] - Device: [2]	Iter: [105][300/313]	Loss 1.176 (1.166)	Prec@1 0.617 (0.578)	
+[2024/11/06 05:37:26] - Val Loss 1.1967, Val Accuracy 0.5665
+[2024/11/06 05:37:27] - epoch 106 lr 1.000000e-05
+[2024/11/06 05:37:27] - Device: [2]	Iter: [106][0/313]	Loss 1.319 (1.319)	Prec@1 0.523 (0.523)	
+[2024/11/06 05:37:30] - Device: [2]	Iter: [106][150/313]	Loss 1.247 (1.165)	Prec@1 0.531 (0.581)	
+[2024/11/06 05:37:32] - Device: [2]	Iter: [106][300/313]	Loss 1.294 (1.161)	Prec@1 0.469 (0.582)	
+[2024/11/06 05:37:33] - Val Loss 1.1842, Val Accuracy 0.5759
+[2024/11/06 05:37:34] - Model saved at epoch 106 with best val accuracy 0.5759
+[2024/11/06 05:37:35] - epoch 107 lr 1.000000e-05
+[2024/11/06 05:37:35] - Device: [2]	Iter: [107][0/313]	Loss 1.182 (1.182)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:37:38] - Device: [2]	Iter: [107][150/313]	Loss 1.302 (1.161)	Prec@1 0.523 (0.582)	
+[2024/11/06 05:37:41] - Device: [2]	Iter: [107][300/313]	Loss 1.193 (1.156)	Prec@1 0.570 (0.583)	
+[2024/11/06 05:37:42] - Val Loss 1.1811, Val Accuracy 0.5740
+[2024/11/06 05:37:43] - epoch 108 lr 1.000000e-05
+[2024/11/06 05:37:43] - Device: [2]	Iter: [108][0/313]	Loss 1.316 (1.316)	Prec@1 0.547 (0.547)	
+[2024/11/06 05:37:46] - Device: [2]	Iter: [108][150/313]	Loss 1.131 (1.147)	Prec@1 0.570 (0.586)	
+[2024/11/06 05:37:48] - Device: [2]	Iter: [108][300/313]	Loss 1.279 (1.149)	Prec@1 0.578 (0.585)	
+[2024/11/06 05:37:49] - Val Loss 1.1799, Val Accuracy 0.5750
+[2024/11/06 05:37:50] - epoch 109 lr 1.000000e-05
+[2024/11/06 05:37:50] - Device: [2]	Iter: [109][0/313]	Loss 1.204 (1.204)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:37:53] - Device: [2]	Iter: [109][150/313]	Loss 1.122 (1.139)	Prec@1 0.570 (0.590)	
+[2024/11/06 05:37:56] - Device: [2]	Iter: [109][300/313]	Loss 1.135 (1.146)	Prec@1 0.562 (0.588)	
+[2024/11/06 05:37:57] - Val Loss 1.1743, Val Accuracy 0.5739
+[2024/11/06 05:37:58] - epoch 110 lr 1.000000e-05
+[2024/11/06 05:37:58] - Device: [2]	Iter: [110][0/313]	Loss 1.184 (1.184)	Prec@1 0.625 (0.625)	
+[2024/11/06 05:38:01] - Device: [2]	Iter: [110][150/313]	Loss 1.173 (1.139)	Prec@1 0.562 (0.589)	
+[2024/11/06 05:38:03] - Device: [2]	Iter: [110][300/313]	Loss 1.057 (1.142)	Prec@1 0.578 (0.589)	
+[2024/11/06 05:38:04] - Val Loss 1.1680, Val Accuracy 0.5754
+[2024/11/06 05:38:05] - epoch 111 lr 1.000000e-05
+[2024/11/06 05:38:05] - Device: [2]	Iter: [111][0/313]	Loss 1.277 (1.277)	Prec@1 0.539 (0.539)	
+[2024/11/06 05:38:08] - Device: [2]	Iter: [111][150/313]	Loss 1.073 (1.143)	Prec@1 0.633 (0.586)	
+[2024/11/06 05:38:10] - Device: [2]	Iter: [111][300/313]	Loss 1.055 (1.139)	Prec@1 0.641 (0.589)	
+[2024/11/06 05:38:12] - Val Loss 1.1655, Val Accuracy 0.5754
+[2024/11/06 05:38:12] - epoch 112 lr 1.000000e-05
+[2024/11/06 05:38:13] - Device: [2]	Iter: [112][0/313]	Loss 1.239 (1.239)	Prec@1 0.555 (0.555)	
+[2024/11/06 05:38:15] - Device: [2]	Iter: [112][150/313]	Loss 1.090 (1.139)	Prec@1 0.594 (0.591)	
+[2024/11/06 05:38:18] - Device: [2]	Iter: [112][300/313]	Loss 1.225 (1.138)	Prec@1 0.547 (0.589)	
+[2024/11/06 05:38:19] - Val Loss 1.1632, Val Accuracy 0.5742
+[2024/11/06 05:38:20] - epoch 113 lr 1.000000e-05
+[2024/11/06 05:38:20] - Device: [2]	Iter: [113][0/313]	Loss 1.144 (1.144)	Prec@1 0.578 (0.578)	
+[2024/11/06 05:38:23] - Device: [2]	Iter: [113][150/313]	Loss 1.271 (1.124)	Prec@1 0.523 (0.595)	
+[2024/11/06 05:38:26] - Device: [2]	Iter: [113][300/313]	Loss 1.116 (1.131)	Prec@1 0.555 (0.593)	
+[2024/11/06 05:38:27] - Val Loss 1.1630, Val Accuracy 0.5805
+[2024/11/06 05:38:28] - Model saved at epoch 113 with best val accuracy 0.5805
+[2024/11/06 05:38:29] - epoch 114 lr 1.000000e-05
+[2024/11/06 05:38:29] - Device: [2]	Iter: [114][0/313]	Loss 1.009 (1.009)	Prec@1 0.594 (0.594)	
+[2024/11/06 05:38:31] - Device: [2]	Iter: [114][150/313]	Loss 1.065 (1.131)	Prec@1 0.562 (0.591)	
+[2024/11/06 05:38:34] - Device: [2]	Iter: [114][300/313]	Loss 1.359 (1.127)	Prec@1 0.547 (0.594)	
+[2024/11/06 05:38:35] - Val Loss 1.1565, Val Accuracy 0.5841
+[2024/11/06 05:38:36] - Model saved at epoch 114 with best val accuracy 0.5841
+[2024/11/06 05:38:37] - epoch 115 lr 1.000000e-05
+[2024/11/06 05:38:37] - Device: [2]	Iter: [115][0/313]	Loss 1.195 (1.195)	Prec@1 0.508 (0.508)	
+[2024/11/06 05:38:40] - Device: [2]	Iter: [115][150/313]	Loss 1.061 (1.128)	Prec@1 0.602 (0.596)	
+[2024/11/06 05:38:43] - Device: [2]	Iter: [115][300/313]	Loss 1.133 (1.124)	Prec@1 0.570 (0.596)	
+[2024/11/06 05:38:44] - Val Loss 1.1487, Val Accuracy 0.5851
+[2024/11/06 05:38:45] - Model saved at epoch 115 with best val accuracy 0.5851
+[2024/11/06 05:38:45] - epoch 116 lr 1.000000e-05
+[2024/11/06 05:38:46] - Device: [2]	Iter: [116][0/313]	Loss 1.109 (1.109)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:38:48] - Device: [2]	Iter: [116][150/313]	Loss 1.114 (1.118)	Prec@1 0.586 (0.600)	
+[2024/11/06 05:38:51] - Device: [2]	Iter: [116][300/313]	Loss 1.228 (1.118)	Prec@1 0.547 (0.598)	
+[2024/11/06 05:38:52] - Val Loss 1.1524, Val Accuracy 0.5772
+[2024/11/06 05:38:53] - epoch 117 lr 1.000000e-05
+[2024/11/06 05:38:53] - Device: [2]	Iter: [117][0/313]	Loss 1.389 (1.389)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:38:56] - Device: [2]	Iter: [117][150/313]	Loss 1.022 (1.124)	Prec@1 0.625 (0.593)	
+[2024/11/06 05:38:58] - Device: [2]	Iter: [117][300/313]	Loss 0.953 (1.118)	Prec@1 0.641 (0.599)	
+[2024/11/06 05:38:59] - Val Loss 1.1466, Val Accuracy 0.5855
+[2024/11/06 05:39:00] - Model saved at epoch 117 with best val accuracy 0.5855
+[2024/11/06 05:39:01] - epoch 118 lr 1.000000e-05
+[2024/11/06 05:39:01] - Device: [2]	Iter: [118][0/313]	Loss 1.010 (1.010)	Prec@1 0.680 (0.680)	
+[2024/11/06 05:39:04] - Device: [2]	Iter: [118][150/313]	Loss 1.012 (1.113)	Prec@1 0.625 (0.599)	
+[2024/11/06 05:39:07] - Device: [2]	Iter: [118][300/313]	Loss 1.051 (1.114)	Prec@1 0.609 (0.599)	
+[2024/11/06 05:39:08] - Val Loss 1.1432, Val Accuracy 0.5894
+[2024/11/06 05:39:09] - Model saved at epoch 118 with best val accuracy 0.5894
+[2024/11/06 05:39:09] - epoch 119 lr 1.000000e-05
+[2024/11/06 05:39:10] - Device: [2]	Iter: [119][0/313]	Loss 1.107 (1.107)	Prec@1 0.602 (0.602)	
+[2024/11/06 05:39:12] - Device: [2]	Iter: [119][150/313]	Loss 1.237 (1.106)	Prec@1 0.570 (0.605)	
+[2024/11/06 05:39:15] - Device: [2]	Iter: [119][300/313]	Loss 1.171 (1.109)	Prec@1 0.586 (0.604)	
+[2024/11/06 05:39:16] - Val Loss 1.1362, Val Accuracy 0.5906
+[2024/11/06 05:39:17] - Model saved at epoch 119 with best val accuracy 0.5906
+[2024/11/06 05:39:17] - epoch 120 lr 1.000000e-05
+[2024/11/06 05:39:18] - Device: [2]	Iter: [120][0/313]	Loss 1.206 (1.206)	Prec@1 0.578 (0.578)	
+[2024/11/06 05:39:20] - Device: [2]	Iter: [120][150/313]	Loss 1.271 (1.108)	Prec@1 0.570 (0.604)	
+[2024/11/06 05:39:23] - Device: [2]	Iter: [120][300/313]	Loss 1.029 (1.105)	Prec@1 0.594 (0.603)	
+[2024/11/06 05:39:24] - Val Loss 1.1396, Val Accuracy 0.5872
+[2024/11/06 05:39:25] - epoch 121 lr 1.000000e-05
+[2024/11/06 05:39:25] - Device: [2]	Iter: [121][0/313]	Loss 1.157 (1.157)	Prec@1 0.547 (0.547)	
+[2024/11/06 05:39:28] - Device: [2]	Iter: [121][150/313]	Loss 1.202 (1.111)	Prec@1 0.578 (0.597)	
+[2024/11/06 05:39:30] - Device: [2]	Iter: [121][300/313]	Loss 1.029 (1.102)	Prec@1 0.641 (0.603)	
+[2024/11/06 05:39:32] - Val Loss 1.1374, Val Accuracy 0.5905
+[2024/11/06 05:39:32] - epoch 122 lr 1.000000e-05
+[2024/11/06 05:39:33] - Device: [2]	Iter: [122][0/313]	Loss 1.100 (1.100)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:39:35] - Device: [2]	Iter: [122][150/313]	Loss 1.084 (1.098)	Prec@1 0.633 (0.605)	
+[2024/11/06 05:39:38] - Device: [2]	Iter: [122][300/313]	Loss 1.210 (1.095)	Prec@1 0.547 (0.608)	
+[2024/11/06 05:39:39] - Val Loss 1.1289, Val Accuracy 0.5974
+[2024/11/06 05:39:40] - Model saved at epoch 122 with best val accuracy 0.5974
+[2024/11/06 05:39:41] - epoch 123 lr 1.000000e-05
+[2024/11/06 05:39:41] - Device: [2]	Iter: [123][0/313]	Loss 1.212 (1.212)	Prec@1 0.555 (0.555)	
+[2024/11/06 05:39:43] - Device: [2]	Iter: [123][150/313]	Loss 0.967 (1.080)	Prec@1 0.633 (0.609)	
+[2024/11/06 05:39:46] - Device: [2]	Iter: [123][300/313]	Loss 1.106 (1.088)	Prec@1 0.633 (0.607)	
+[2024/11/06 05:39:47] - Val Loss 1.1283, Val Accuracy 0.5917
+[2024/11/06 05:39:48] - epoch 124 lr 1.000000e-05
+[2024/11/06 05:39:48] - Device: [2]	Iter: [124][0/313]	Loss 1.176 (1.176)	Prec@1 0.586 (0.586)	
+[2024/11/06 05:39:51] - Device: [2]	Iter: [124][150/313]	Loss 1.189 (1.097)	Prec@1 0.555 (0.605)	
+[2024/11/06 05:39:54] - Device: [2]	Iter: [124][300/313]	Loss 1.190 (1.089)	Prec@1 0.602 (0.608)	
+[2024/11/06 05:39:55] - Val Loss 1.1269, Val Accuracy 0.5884
+[2024/11/06 05:39:56] - epoch 125 lr 1.000000e-05
+[2024/11/06 05:39:56] - Device: [2]	Iter: [125][0/313]	Loss 1.045 (1.045)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:39:59] - Device: [2]	Iter: [125][150/313]	Loss 1.191 (1.090)	Prec@1 0.562 (0.607)	
+[2024/11/06 05:40:01] - Device: [2]	Iter: [125][300/313]	Loss 0.996 (1.086)	Prec@1 0.664 (0.610)	
+[2024/11/06 05:40:02] - Val Loss 1.1226, Val Accuracy 0.5973
+[2024/11/06 05:40:03] - epoch 126 lr 1.000000e-05
+[2024/11/06 05:40:03] - Device: [2]	Iter: [126][0/313]	Loss 0.999 (0.999)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:40:06] - Device: [2]	Iter: [126][150/313]	Loss 1.057 (1.084)	Prec@1 0.641 (0.613)	
+[2024/11/06 05:40:08] - Device: [2]	Iter: [126][300/313]	Loss 1.011 (1.082)	Prec@1 0.664 (0.612)	
+[2024/11/06 05:40:09] - Val Loss 1.1169, Val Accuracy 0.5969
+[2024/11/06 05:40:10] - epoch 127 lr 1.000000e-05
+[2024/11/06 05:40:11] - Device: [2]	Iter: [127][0/313]	Loss 1.023 (1.023)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:40:13] - Device: [2]	Iter: [127][150/313]	Loss 1.198 (1.075)	Prec@1 0.531 (0.616)	
+[2024/11/06 05:40:16] - Device: [2]	Iter: [127][300/313]	Loss 0.993 (1.078)	Prec@1 0.648 (0.612)	
+[2024/11/06 05:40:17] - Val Loss 1.1112, Val Accuracy 0.6023
+[2024/11/06 05:40:18] - Model saved at epoch 127 with best val accuracy 0.6023
+[2024/11/06 05:40:19] - epoch 128 lr 1.000000e-05
+[2024/11/06 05:40:19] - Device: [2]	Iter: [128][0/313]	Loss 0.986 (0.986)	Prec@1 0.625 (0.625)	
+[2024/11/06 05:40:22] - Device: [2]	Iter: [128][150/313]	Loss 1.187 (1.077)	Prec@1 0.602 (0.610)	
+[2024/11/06 05:40:24] - Device: [2]	Iter: [128][300/313]	Loss 1.060 (1.074)	Prec@1 0.648 (0.613)	
+[2024/11/06 05:40:26] - Val Loss 1.1122, Val Accuracy 0.5959
+[2024/11/06 05:40:26] - epoch 129 lr 1.000000e-05
+[2024/11/06 05:40:27] - Device: [2]	Iter: [129][0/313]	Loss 1.030 (1.030)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:40:29] - Device: [2]	Iter: [129][150/313]	Loss 1.210 (1.071)	Prec@1 0.594 (0.614)	
+[2024/11/06 05:40:32] - Device: [2]	Iter: [129][300/313]	Loss 0.969 (1.070)	Prec@1 0.695 (0.614)	
+[2024/11/06 05:40:33] - Val Loss 1.0998, Val Accuracy 0.6093
+[2024/11/06 05:40:34] - Model saved at epoch 129 with best val accuracy 0.6093
+[2024/11/06 05:40:35] - epoch 130 lr 1.000000e-05
+[2024/11/06 05:40:35] - Device: [2]	Iter: [130][0/313]	Loss 1.218 (1.218)	Prec@1 0.547 (0.547)	
+[2024/11/06 05:40:38] - Device: [2]	Iter: [130][150/313]	Loss 0.973 (1.070)	Prec@1 0.648 (0.616)	
+[2024/11/06 05:40:41] - Device: [2]	Iter: [130][300/313]	Loss 1.017 (1.065)	Prec@1 0.609 (0.616)	
+[2024/11/06 05:40:42] - Val Loss 1.1041, Val Accuracy 0.6032
+[2024/11/06 05:40:43] - epoch 131 lr 1.000000e-05
+[2024/11/06 05:40:43] - Device: [2]	Iter: [131][0/313]	Loss 1.072 (1.072)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:40:45] - Device: [2]	Iter: [131][150/313]	Loss 1.138 (1.066)	Prec@1 0.555 (0.618)	
+[2024/11/06 05:40:48] - Device: [2]	Iter: [131][300/313]	Loss 1.051 (1.065)	Prec@1 0.641 (0.617)	
+[2024/11/06 05:40:49] - Val Loss 1.1026, Val Accuracy 0.6046
+[2024/11/06 05:40:50] - epoch 132 lr 1.000000e-05
+[2024/11/06 05:40:50] - Device: [2]	Iter: [132][0/313]	Loss 1.159 (1.159)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:40:52] - Device: [2]	Iter: [132][150/313]	Loss 1.146 (1.057)	Prec@1 0.562 (0.619)	
+[2024/11/06 05:40:55] - Device: [2]	Iter: [132][300/313]	Loss 1.037 (1.059)	Prec@1 0.648 (0.619)	
+[2024/11/06 05:40:56] - Val Loss 1.0988, Val Accuracy 0.6039
+[2024/11/06 05:40:57] - epoch 133 lr 1.000000e-05
+[2024/11/06 05:40:57] - Device: [2]	Iter: [133][0/313]	Loss 1.123 (1.123)	Prec@1 0.594 (0.594)	
+[2024/11/06 05:40:59] - Device: [2]	Iter: [133][150/313]	Loss 1.151 (1.054)	Prec@1 0.531 (0.622)	
+[2024/11/06 05:41:02] - Device: [2]	Iter: [133][300/313]	Loss 1.175 (1.055)	Prec@1 0.570 (0.621)	
+[2024/11/06 05:41:03] - Val Loss 1.0967, Val Accuracy 0.6062
+[2024/11/06 05:41:04] - epoch 134 lr 1.000000e-05
+[2024/11/06 05:41:04] - Device: [2]	Iter: [134][0/313]	Loss 1.009 (1.009)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:41:07] - Device: [2]	Iter: [134][150/313]	Loss 1.183 (1.070)	Prec@1 0.586 (0.618)	
+[2024/11/06 05:41:10] - Device: [2]	Iter: [134][300/313]	Loss 1.168 (1.054)	Prec@1 0.531 (0.622)	
+[2024/11/06 05:41:11] - Val Loss 1.0913, Val Accuracy 0.6114
+[2024/11/06 05:41:12] - Model saved at epoch 134 with best val accuracy 0.6114
+[2024/11/06 05:41:12] - epoch 135 lr 1.000000e-05
+[2024/11/06 05:41:13] - Device: [2]	Iter: [135][0/313]	Loss 1.140 (1.140)	Prec@1 0.594 (0.594)	
+[2024/11/06 05:41:15] - Device: [2]	Iter: [135][150/313]	Loss 1.108 (1.056)	Prec@1 0.641 (0.622)	
+[2024/11/06 05:41:18] - Device: [2]	Iter: [135][300/313]	Loss 1.041 (1.051)	Prec@1 0.602 (0.622)	
+[2024/11/06 05:41:19] - Val Loss 1.0895, Val Accuracy 0.6060
+[2024/11/06 05:41:20] - epoch 136 lr 1.000000e-05
+[2024/11/06 05:41:20] - Device: [2]	Iter: [136][0/313]	Loss 1.079 (1.079)	Prec@1 0.531 (0.531)	
+[2024/11/06 05:41:23] - Device: [2]	Iter: [136][150/313]	Loss 1.041 (1.055)	Prec@1 0.578 (0.620)	
+[2024/11/06 05:41:25] - Device: [2]	Iter: [136][300/313]	Loss 0.953 (1.049)	Prec@1 0.656 (0.623)	
+[2024/11/06 05:41:26] - Val Loss 1.0862, Val Accuracy 0.6065
+[2024/11/06 05:41:27] - epoch 137 lr 1.000000e-05
+[2024/11/06 05:41:28] - Device: [2]	Iter: [137][0/313]	Loss 0.976 (0.976)	Prec@1 0.672 (0.672)	
+[2024/11/06 05:41:30] - Device: [2]	Iter: [137][150/313]	Loss 1.087 (1.042)	Prec@1 0.602 (0.626)	
+[2024/11/06 05:41:33] - Device: [2]	Iter: [137][300/313]	Loss 1.125 (1.043)	Prec@1 0.617 (0.623)	
+[2024/11/06 05:41:34] - Val Loss 1.0780, Val Accuracy 0.6121
+[2024/11/06 05:41:35] - Model saved at epoch 137 with best val accuracy 0.6121
+[2024/11/06 05:41:36] - epoch 138 lr 1.000000e-05
+[2024/11/06 05:41:36] - Device: [2]	Iter: [138][0/313]	Loss 1.061 (1.061)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:41:39] - Device: [2]	Iter: [138][150/313]	Loss 1.153 (1.043)	Prec@1 0.570 (0.623)	
+[2024/11/06 05:41:42] - Device: [2]	Iter: [138][300/313]	Loss 1.019 (1.042)	Prec@1 0.633 (0.625)	
+[2024/11/06 05:41:43] - Val Loss 1.0858, Val Accuracy 0.6118
+[2024/11/06 05:41:44] - epoch 139 lr 1.000000e-05
+[2024/11/06 05:41:44] - Device: [2]	Iter: [139][0/313]	Loss 1.059 (1.059)	Prec@1 0.602 (0.602)	
+[2024/11/06 05:41:47] - Device: [2]	Iter: [139][150/313]	Loss 0.992 (1.042)	Prec@1 0.641 (0.624)	
+[2024/11/06 05:41:49] - Device: [2]	Iter: [139][300/313]	Loss 1.066 (1.038)	Prec@1 0.625 (0.625)	
+[2024/11/06 05:41:50] - Val Loss 1.0814, Val Accuracy 0.6147
+[2024/11/06 05:41:51] - Model saved at epoch 139 with best val accuracy 0.6147
+[2024/11/06 05:41:52] - epoch 140 lr 1.000000e-05
+[2024/11/06 05:41:52] - Device: [2]	Iter: [140][0/313]	Loss 0.955 (0.955)	Prec@1 0.680 (0.680)	
+[2024/11/06 05:41:55] - Device: [2]	Iter: [140][150/313]	Loss 0.911 (1.037)	Prec@1 0.672 (0.627)	
+[2024/11/06 05:41:58] - Device: [2]	Iter: [140][300/313]	Loss 0.932 (1.036)	Prec@1 0.633 (0.626)	
+[2024/11/06 05:41:59] - Val Loss 1.0720, Val Accuracy 0.6157
+[2024/11/06 05:42:00] - Model saved at epoch 140 with best val accuracy 0.6157
+[2024/11/06 05:42:00] - epoch 141 lr 1.000000e-05
+[2024/11/06 05:42:01] - Device: [2]	Iter: [141][0/313]	Loss 0.973 (0.973)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:42:03] - Device: [2]	Iter: [141][150/313]	Loss 1.065 (1.035)	Prec@1 0.625 (0.629)	
+[2024/11/06 05:42:06] - Device: [2]	Iter: [141][300/313]	Loss 1.037 (1.027)	Prec@1 0.625 (0.632)	
+[2024/11/06 05:42:07] - Val Loss 1.0669, Val Accuracy 0.6210
+[2024/11/06 05:42:08] - Model saved at epoch 141 with best val accuracy 0.6210
+[2024/11/06 05:42:09] - epoch 142 lr 1.000000e-05
+[2024/11/06 05:42:09] - Device: [2]	Iter: [142][0/313]	Loss 1.023 (1.023)	Prec@1 0.617 (0.617)	
+[2024/11/06 05:42:12] - Device: [2]	Iter: [142][150/313]	Loss 1.110 (1.023)	Prec@1 0.594 (0.630)	
+[2024/11/06 05:42:14] - Device: [2]	Iter: [142][300/313]	Loss 1.052 (1.028)	Prec@1 0.609 (0.630)	
+[2024/11/06 05:42:15] - Val Loss 1.0741, Val Accuracy 0.6113
+[2024/11/06 05:42:16] - epoch 143 lr 1.000000e-05
+[2024/11/06 05:42:17] - Device: [2]	Iter: [143][0/313]	Loss 1.003 (1.003)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:42:19] - Device: [2]	Iter: [143][150/313]	Loss 1.098 (1.033)	Prec@1 0.602 (0.627)	
+[2024/11/06 05:42:22] - Device: [2]	Iter: [143][300/313]	Loss 0.996 (1.027)	Prec@1 0.641 (0.630)	
+[2024/11/06 05:42:23] - Val Loss 1.0764, Val Accuracy 0.6093
+[2024/11/06 05:42:24] - epoch 144 lr 1.000000e-05
+[2024/11/06 05:42:24] - Device: [2]	Iter: [144][0/313]	Loss 1.009 (1.009)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:42:27] - Device: [2]	Iter: [144][150/313]	Loss 0.946 (1.027)	Prec@1 0.664 (0.631)	
+[2024/11/06 05:42:29] - Device: [2]	Iter: [144][300/313]	Loss 0.939 (1.024)	Prec@1 0.695 (0.630)	
+[2024/11/06 05:42:30] - Val Loss 1.0674, Val Accuracy 0.6212
+[2024/11/06 05:42:31] - Model saved at epoch 144 with best val accuracy 0.6212
+[2024/11/06 05:42:32] - epoch 145 lr 1.000000e-05
+[2024/11/06 05:42:32] - Device: [2]	Iter: [145][0/313]	Loss 1.034 (1.034)	Prec@1 0.672 (0.672)	
+[2024/11/06 05:42:35] - Device: [2]	Iter: [145][150/313]	Loss 0.887 (1.011)	Prec@1 0.734 (0.641)	
+[2024/11/06 05:42:38] - Device: [2]	Iter: [145][300/313]	Loss 1.045 (1.015)	Prec@1 0.586 (0.637)	
+[2024/11/06 05:42:39] - Val Loss 1.0614, Val Accuracy 0.6173
+[2024/11/06 05:42:40] - epoch 146 lr 1.000000e-05
+[2024/11/06 05:42:40] - Device: [2]	Iter: [146][0/313]	Loss 1.025 (1.025)	Prec@1 0.570 (0.570)	
+[2024/11/06 05:42:42] - Device: [2]	Iter: [146][150/313]	Loss 1.019 (1.016)	Prec@1 0.586 (0.633)	
+[2024/11/06 05:42:45] - Device: [2]	Iter: [146][300/313]	Loss 0.890 (1.012)	Prec@1 0.625 (0.637)	
+[2024/11/06 05:42:46] - Val Loss 1.0555, Val Accuracy 0.6207
+[2024/11/06 05:42:47] - epoch 147 lr 1.000000e-05
+[2024/11/06 05:42:47] - Device: [2]	Iter: [147][0/313]	Loss 1.033 (1.033)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:42:50] - Device: [2]	Iter: [147][150/313]	Loss 0.976 (1.012)	Prec@1 0.602 (0.637)	
+[2024/11/06 05:42:53] - Device: [2]	Iter: [147][300/313]	Loss 1.010 (1.015)	Prec@1 0.586 (0.635)	
+[2024/11/06 05:42:54] - Val Loss 1.0597, Val Accuracy 0.6214
+[2024/11/06 05:42:55] - Model saved at epoch 147 with best val accuracy 0.6214
+[2024/11/06 05:42:56] - epoch 148 lr 1.000000e-05
+[2024/11/06 05:42:56] - Device: [2]	Iter: [148][0/313]	Loss 0.922 (0.922)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:42:58] - Device: [2]	Iter: [148][150/313]	Loss 0.975 (1.017)	Prec@1 0.672 (0.636)	
+[2024/11/06 05:43:01] - Device: [2]	Iter: [148][300/313]	Loss 0.934 (1.011)	Prec@1 0.625 (0.637)	
+[2024/11/06 05:43:02] - Val Loss 1.0535, Val Accuracy 0.6210
+[2024/11/06 05:43:03] - epoch 149 lr 1.000000e-05
+[2024/11/06 05:43:03] - Device: [2]	Iter: [149][0/313]	Loss 1.076 (1.076)	Prec@1 0.594 (0.594)	
+[2024/11/06 05:43:06] - Device: [2]	Iter: [149][150/313]	Loss 1.063 (1.009)	Prec@1 0.664 (0.638)	
+[2024/11/06 05:43:09] - Device: [2]	Iter: [149][300/313]	Loss 1.085 (1.008)	Prec@1 0.594 (0.639)	
+[2024/11/06 05:43:10] - Val Loss 1.0525, Val Accuracy 0.6223
+[2024/11/06 05:43:11] - Model saved at epoch 149 with best val accuracy 0.6223
+[2024/11/06 05:43:11] - epoch 150 lr 1.000000e-05
+[2024/11/06 05:43:12] - Device: [2]	Iter: [150][0/313]	Loss 1.058 (1.058)	Prec@1 0.625 (0.625)	
+[2024/11/06 05:43:14] - Device: [2]	Iter: [150][150/313]	Loss 1.005 (0.994)	Prec@1 0.648 (0.639)	
+[2024/11/06 05:43:17] - Device: [2]	Iter: [150][300/313]	Loss 0.952 (1.002)	Prec@1 0.719 (0.638)	
+[2024/11/06 05:43:18] - Val Loss 1.0550, Val Accuracy 0.6202
+[2024/11/06 05:43:19] - epoch 151 lr 1.000000e-05
+[2024/11/06 05:43:19] - Device: [2]	Iter: [151][0/313]	Loss 0.929 (0.929)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:43:22] - Device: [2]	Iter: [151][150/313]	Loss 1.009 (1.002)	Prec@1 0.625 (0.643)	
+[2024/11/06 05:43:25] - Device: [2]	Iter: [151][300/313]	Loss 0.934 (1.001)	Prec@1 0.633 (0.640)	
+[2024/11/06 05:43:26] - Val Loss 1.0428, Val Accuracy 0.6253
+[2024/11/06 05:43:27] - Model saved at epoch 151 with best val accuracy 0.6253
+[2024/11/06 05:43:28] - epoch 152 lr 1.000000e-05
+[2024/11/06 05:43:28] - Device: [2]	Iter: [152][0/313]	Loss 1.032 (1.032)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:43:30] - Device: [2]	Iter: [152][150/313]	Loss 1.054 (0.992)	Prec@1 0.609 (0.643)	
+[2024/11/06 05:43:33] - Device: [2]	Iter: [152][300/313]	Loss 1.017 (0.999)	Prec@1 0.656 (0.641)	
+[2024/11/06 05:43:34] - Val Loss 1.0416, Val Accuracy 0.6254
+[2024/11/06 05:43:35] - Model saved at epoch 152 with best val accuracy 0.6254
+[2024/11/06 05:43:36] - epoch 153 lr 1.000000e-05
+[2024/11/06 05:43:36] - Device: [2]	Iter: [153][0/313]	Loss 0.870 (0.870)	Prec@1 0.711 (0.711)	
+[2024/11/06 05:43:39] - Device: [2]	Iter: [153][150/313]	Loss 1.013 (0.991)	Prec@1 0.633 (0.645)	
+[2024/11/06 05:43:41] - Device: [2]	Iter: [153][300/313]	Loss 1.075 (0.995)	Prec@1 0.562 (0.642)	
+[2024/11/06 05:43:42] - Val Loss 1.0333, Val Accuracy 0.6310
+[2024/11/06 05:43:43] - Model saved at epoch 153 with best val accuracy 0.6310
+[2024/11/06 05:43:44] - epoch 154 lr 1.000000e-05
+[2024/11/06 05:43:44] - Device: [2]	Iter: [154][0/313]	Loss 0.924 (0.924)	Prec@1 0.672 (0.672)	
+[2024/11/06 05:43:47] - Device: [2]	Iter: [154][150/313]	Loss 1.052 (0.999)	Prec@1 0.617 (0.639)	
+[2024/11/06 05:43:50] - Device: [2]	Iter: [154][300/313]	Loss 0.929 (0.991)	Prec@1 0.734 (0.644)	
+[2024/11/06 05:43:51] - Val Loss 1.0336, Val Accuracy 0.6338
+[2024/11/06 05:43:52] - Model saved at epoch 154 with best val accuracy 0.6338
+[2024/11/06 05:43:52] - epoch 155 lr 1.000000e-05
+[2024/11/06 05:43:53] - Device: [2]	Iter: [155][0/313]	Loss 1.089 (1.089)	Prec@1 0.672 (0.672)	
+[2024/11/06 05:43:55] - Device: [2]	Iter: [155][150/313]	Loss 0.989 (0.979)	Prec@1 0.656 (0.645)	
+[2024/11/06 05:43:58] - Device: [2]	Iter: [155][300/313]	Loss 1.087 (0.989)	Prec@1 0.641 (0.644)	
+[2024/11/06 05:43:59] - Val Loss 1.0398, Val Accuracy 0.6254
+[2024/11/06 05:44:00] - epoch 156 lr 1.000000e-05
+[2024/11/06 05:44:00] - Device: [2]	Iter: [156][0/313]	Loss 0.860 (0.860)	Prec@1 0.695 (0.695)	
+[2024/11/06 05:44:03] - Device: [2]	Iter: [156][150/313]	Loss 0.931 (0.985)	Prec@1 0.641 (0.648)	
+[2024/11/06 05:44:05] - Device: [2]	Iter: [156][300/313]	Loss 1.093 (0.983)	Prec@1 0.641 (0.649)	
+[2024/11/06 05:44:07] - Val Loss 1.0282, Val Accuracy 0.6333
+[2024/11/06 05:44:07] - epoch 157 lr 1.000000e-05
+[2024/11/06 05:44:08] - Device: [2]	Iter: [157][0/313]	Loss 1.042 (1.042)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:44:10] - Device: [2]	Iter: [157][150/313]	Loss 0.980 (0.987)	Prec@1 0.664 (0.643)	
+[2024/11/06 05:44:13] - Device: [2]	Iter: [157][300/313]	Loss 1.003 (0.986)	Prec@1 0.609 (0.643)	
+[2024/11/06 05:44:14] - Val Loss 1.0374, Val Accuracy 0.6278
+[2024/11/06 05:44:15] - epoch 158 lr 1.000000e-05
+[2024/11/06 05:44:15] - Device: [2]	Iter: [158][0/313]	Loss 0.925 (0.925)	Prec@1 0.703 (0.703)	
+[2024/11/06 05:44:18] - Device: [2]	Iter: [158][150/313]	Loss 1.028 (0.989)	Prec@1 0.586 (0.645)	
+[2024/11/06 05:44:21] - Device: [2]	Iter: [158][300/313]	Loss 0.925 (0.980)	Prec@1 0.656 (0.647)	
+[2024/11/06 05:44:22] - Val Loss 1.0266, Val Accuracy 0.6330
+[2024/11/06 05:44:22] - epoch 159 lr 1.000000e-05
+[2024/11/06 05:44:23] - Device: [2]	Iter: [159][0/313]	Loss 1.034 (1.034)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:44:25] - Device: [2]	Iter: [159][150/313]	Loss 0.895 (0.991)	Prec@1 0.719 (0.646)	
+[2024/11/06 05:44:28] - Device: [2]	Iter: [159][300/313]	Loss 1.034 (0.976)	Prec@1 0.633 (0.650)	
+[2024/11/06 05:44:29] - Val Loss 1.0280, Val Accuracy 0.6323
+[2024/11/06 05:44:30] - epoch 160 lr 1.000000e-05
+[2024/11/06 05:44:30] - Device: [2]	Iter: [160][0/313]	Loss 0.793 (0.793)	Prec@1 0.688 (0.688)	
+[2024/11/06 05:44:33] - Device: [2]	Iter: [160][150/313]	Loss 1.002 (0.972)	Prec@1 0.664 (0.654)	
+[2024/11/06 05:44:35] - Device: [2]	Iter: [160][300/313]	Loss 0.857 (0.975)	Prec@1 0.695 (0.651)	
+[2024/11/06 05:44:36] - Val Loss 1.0223, Val Accuracy 0.6333
+[2024/11/06 05:44:37] - epoch 161 lr 1.000000e-05
+[2024/11/06 05:44:38] - Device: [2]	Iter: [161][0/313]	Loss 0.829 (0.829)	Prec@1 0.664 (0.664)	
+[2024/11/06 05:44:40] - Device: [2]	Iter: [161][150/313]	Loss 1.071 (0.970)	Prec@1 0.625 (0.653)	
+[2024/11/06 05:44:43] - Device: [2]	Iter: [161][300/313]	Loss 1.083 (0.974)	Prec@1 0.617 (0.652)	
+[2024/11/06 05:44:44] - Val Loss 1.0135, Val Accuracy 0.6353
+[2024/11/06 05:44:45] - Model saved at epoch 161 with best val accuracy 0.6353
+[2024/11/06 05:44:46] - epoch 162 lr 1.000000e-05
+[2024/11/06 05:44:46] - Device: [2]	Iter: [162][0/313]	Loss 0.942 (0.942)	Prec@1 0.680 (0.680)	
+[2024/11/06 05:44:49] - Device: [2]	Iter: [162][150/313]	Loss 0.972 (0.981)	Prec@1 0.641 (0.647)	
+[2024/11/06 05:44:51] - Device: [2]	Iter: [162][300/313]	Loss 0.965 (0.967)	Prec@1 0.602 (0.652)	
+[2024/11/06 05:44:52] - Val Loss 1.0235, Val Accuracy 0.6318
+[2024/11/06 05:44:53] - epoch 163 lr 1.000000e-05
+[2024/11/06 05:44:54] - Device: [2]	Iter: [163][0/313]	Loss 1.098 (1.098)	Prec@1 0.609 (0.609)	
+[2024/11/06 05:44:56] - Device: [2]	Iter: [163][150/313]	Loss 1.175 (0.967)	Prec@1 0.555 (0.653)	
+[2024/11/06 05:44:59] - Device: [2]	Iter: [163][300/313]	Loss 0.946 (0.966)	Prec@1 0.680 (0.651)	
+[2024/11/06 05:45:00] - Val Loss 1.0114, Val Accuracy 0.6391
+[2024/11/06 05:45:01] - Model saved at epoch 163 with best val accuracy 0.6391
+[2024/11/06 05:45:02] - epoch 164 lr 1.000000e-05
+[2024/11/06 05:45:02] - Device: [2]	Iter: [164][0/313]	Loss 0.985 (0.985)	Prec@1 0.695 (0.695)	
+[2024/11/06 05:45:05] - Device: [2]	Iter: [164][150/313]	Loss 0.817 (0.960)	Prec@1 0.648 (0.652)	
+[2024/11/06 05:45:08] - Device: [2]	Iter: [164][300/313]	Loss 0.923 (0.966)	Prec@1 0.680 (0.652)	
+[2024/11/06 05:45:09] - Val Loss 1.0084, Val Accuracy 0.6391
+[2024/11/06 05:45:10] - epoch 165 lr 1.000000e-05
+[2024/11/06 05:45:10] - Device: [2]	Iter: [165][0/313]	Loss 0.931 (0.931)	Prec@1 0.688 (0.688)	
+[2024/11/06 05:45:13] - Device: [2]	Iter: [165][150/313]	Loss 0.866 (0.966)	Prec@1 0.719 (0.656)	
+[2024/11/06 05:45:15] - Device: [2]	Iter: [165][300/313]	Loss 0.868 (0.964)	Prec@1 0.703 (0.655)	
+[2024/11/06 05:45:17] - Val Loss 1.0041, Val Accuracy 0.6371
+[2024/11/06 05:45:17] - epoch 166 lr 1.000000e-05
+[2024/11/06 05:45:18] - Device: [2]	Iter: [166][0/313]	Loss 0.947 (0.947)	Prec@1 0.602 (0.602)	
+[2024/11/06 05:45:20] - Device: [2]	Iter: [166][150/313]	Loss 0.864 (0.963)	Prec@1 0.656 (0.652)	
+[2024/11/06 05:45:23] - Device: [2]	Iter: [166][300/313]	Loss 0.926 (0.962)	Prec@1 0.648 (0.652)	
+[2024/11/06 05:45:24] - Val Loss 1.0109, Val Accuracy 0.6390
+[2024/11/06 05:45:25] - epoch 167 lr 1.000000e-05
+[2024/11/06 05:45:25] - Device: [2]	Iter: [167][0/313]	Loss 1.048 (1.048)	Prec@1 0.562 (0.562)	
+[2024/11/06 05:45:28] - Device: [2]	Iter: [167][150/313]	Loss 0.935 (0.954)	Prec@1 0.711 (0.659)	
+[2024/11/06 05:45:31] - Device: [2]	Iter: [167][300/313]	Loss 1.017 (0.955)	Prec@1 0.586 (0.656)	
+[2024/11/06 05:45:32] - Val Loss 1.0051, Val Accuracy 0.6389
+[2024/11/06 05:45:33] - epoch 168 lr 1.000000e-05
+[2024/11/06 05:45:33] - Device: [2]	Iter: [168][0/313]	Loss 1.013 (1.013)	Prec@1 0.633 (0.633)	
+[2024/11/06 05:45:36] - Device: [2]	Iter: [168][150/313]	Loss 1.070 (0.951)	Prec@1 0.578 (0.656)	
+[2024/11/06 05:45:38] - Device: [2]	Iter: [168][300/313]	Loss 0.913 (0.955)	Prec@1 0.672 (0.658)	
+[2024/11/06 05:45:40] - Val Loss 1.0028, Val Accuracy 0.6438
+[2024/11/06 05:45:40] - Model saved at epoch 168 with best val accuracy 0.6438
+[2024/11/06 05:45:41] - epoch 169 lr 1.000000e-05
+[2024/11/06 05:45:42] - Device: [2]	Iter: [169][0/313]	Loss 0.856 (0.856)	Prec@1 0.750 (0.750)	
+[2024/11/06 05:45:44] - Device: [2]	Iter: [169][150/313]	Loss 0.907 (0.952)	Prec@1 0.672 (0.658)	
+[2024/11/06 05:45:47] - Device: [2]	Iter: [169][300/313]	Loss 0.981 (0.955)	Prec@1 0.648 (0.655)	
+[2024/11/06 05:45:48] - Val Loss 1.0003, Val Accuracy 0.6420
+[2024/11/06 05:45:49] - epoch 170 lr 1.000000e-05
+[2024/11/06 05:45:49] - Device: [2]	Iter: [170][0/313]	Loss 0.988 (0.988)	Prec@1 0.602 (0.602)	
+[2024/11/06 05:45:52] - Device: [2]	Iter: [170][150/313]	Loss 0.985 (0.949)	Prec@1 0.641 (0.657)	
+[2024/11/06 05:45:54] - Device: [2]	Iter: [170][300/313]	Loss 0.912 (0.945)	Prec@1 0.633 (0.658)	
+[2024/11/06 05:45:56] - Val Loss 0.9899, Val Accuracy 0.6467
+[2024/11/06 05:45:56] - Model saved at epoch 170 with best val accuracy 0.6467
+[2024/11/06 05:45:57] - epoch 171 lr 1.000000e-05
+[2024/11/06 05:45:58] - Device: [2]	Iter: [171][0/313]	Loss 0.938 (0.938)	Prec@1 0.641 (0.641)	
+[2024/11/06 05:46:00] - Device: [2]	Iter: [171][150/313]	Loss 0.766 (0.937)	Prec@1 0.734 (0.665)	
+[2024/11/06 05:46:03] - Device: [2]	Iter: [171][300/313]	Loss 1.245 (0.942)	Prec@1 0.570 (0.661)	
+[2024/11/06 05:46:04] - Val Loss 0.9929, Val Accuracy 0.6444
+[2024/11/06 05:46:05] - epoch 172 lr 1.000000e-05
+[2024/11/06 05:46:05] - Device: [2]	Iter: [172][0/313]	Loss 0.957 (0.957)	Prec@1 0.625 (0.625)	
+[2024/11/06 05:46:08] - Device: [2]	Iter: [172][150/313]	Loss 1.008 (0.952)	Prec@1 0.609 (0.657)	
+[2024/11/06 05:46:11] - Device: [2]	Iter: [172][300/313]	Loss 0.864 (0.947)	Prec@1 0.664 (0.659)	
+[2024/11/06 05:46:12] - Val Loss 0.9967, Val Accuracy 0.6449
+[2024/11/06 05:46:13] - epoch 173 lr 1.000000e-05
+[2024/11/06 05:46:13] - Device: [2]	Iter: [173][0/313]	Loss 0.813 (0.813)	Prec@1 0.703 (0.703)	
+[2024/11/06 05:46:15] - Device: [2]	Iter: [173][150/313]	Loss 0.957 (0.933)	Prec@1 0.602 (0.663)	
+[2024/11/06 05:46:18] - Device: [2]	Iter: [173][300/313]	Loss 1.018 (0.937)	Prec@1 0.641 (0.664)	
+[2024/11/06 05:46:19] - Val Loss 0.9913, Val Accuracy 0.6461
+[2024/11/06 05:46:20] - epoch 174 lr 1.000000e-05
+[2024/11/06 05:46:20] - Device: [2]	Iter: [174][0/313]	Loss 0.910 (0.910)	Prec@1 0.672 (0.672)	
+[2024/11/06 05:46:23] - Device: [2]	Iter: [174][150/313]	Loss 0.858 (0.938)	Prec@1 0.664 (0.659)	
+[2024/11/06 05:46:25] - Device: [2]	Iter: [174][300/313]	Loss 0.804 (0.937)	Prec@1 0.727 (0.661)	
+[2024/11/06 05:46:27] - Val Loss 0.9877, Val Accuracy 0.6460
+[2024/11/06 05:46:27] - epoch 175 lr 1.000000e-05
+[2024/11/06 05:46:28] - Device: [2]	Iter: [175][0/313]	Loss 0.837 (0.837)	Prec@1 0.719 (0.719)	
+[2024/11/06 05:46:30] - Device: [2]	Iter: [175][150/313]	Loss 0.932 (0.923)	Prec@1 0.641 (0.672)	
+[2024/11/06 05:46:33] - Device: [2]	Iter: [175][300/313]	Loss 0.820 (0.928)	Prec@1 0.680 (0.667)	
+[2024/11/06 05:46:34] - Val Loss 0.9850, Val Accuracy 0.6508
+[2024/11/06 05:46:35] - Model saved at epoch 175 with best val accuracy 0.6508
+[2024/11/06 05:46:36] - epoch 176 lr 1.000000e-05
+[2024/11/06 05:46:36] - Device: [2]	Iter: [176][0/313]	Loss 0.918 (0.918)	Prec@1 0.602 (0.602)	
+[2024/11/06 05:46:39] - Device: [2]	Iter: [176][150/313]	Loss 1.008 (0.932)	Prec@1 0.586 (0.666)	
+[2024/11/06 05:46:41] - Device: [2]	Iter: [176][300/313]	Loss 0.960 (0.934)	Prec@1 0.633 (0.664)	
+[2024/11/06 05:46:42] - Val Loss 0.9859, Val Accuracy 0.6474
+[2024/11/06 05:46:43] - epoch 177 lr 1.000000e-05
+[2024/11/06 05:46:44] - Device: [2]	Iter: [177][0/313]	Loss 0.846 (0.846)	Prec@1 0.688 (0.688)	
+[2024/11/06 05:46:46] - Device: [2]	Iter: [177][150/313]	Loss 0.917 (0.943)	Prec@1 0.680 (0.660)	
+[2024/11/06 05:46:49] - Device: [2]	Iter: [177][300/313]	Loss 0.729 (0.930)	Prec@1 0.758 (0.665)	
+[2024/11/06 05:46:50] - Val Loss 0.9811, Val Accuracy 0.6503
+[2024/11/06 05:46:51] - epoch 178 lr 1.000000e-05
+[2024/11/06 05:46:51] - Device: [2]	Iter: [178][0/313]	Loss 0.814 (0.814)	Prec@1 0.703 (0.703)	
+[2024/11/06 05:46:54] - Device: [2]	Iter: [178][150/313]	Loss 0.843 (0.916)	Prec@1 0.672 (0.671)	
+[2024/11/06 05:46:57] - Device: [2]	Iter: [178][300/313]	Loss 1.032 (0.922)	Prec@1 0.688 (0.668)	
+[2024/11/06 05:46:58] - Val Loss 0.9796, Val Accuracy 0.6483
+[2024/11/06 05:46:59] - epoch 179 lr 1.000000e-05
+[2024/11/06 05:46:59] - Device: [2]	Iter: [179][0/313]	Loss 1.089 (1.089)	Prec@1 0.617 (0.617)	
+[2024/11/06 05:47:01] - Device: [2]	Iter: [179][150/313]	Loss 1.026 (0.937)	Prec@1 0.625 (0.664)	
+[2024/11/06 05:47:04] - Device: [2]	Iter: [179][300/313]	Loss 1.038 (0.922)	Prec@1 0.680 (0.670)	
+[2024/11/06 05:47:05] - Val Loss 0.9774, Val Accuracy 0.6544
+[2024/11/06 05:47:06] - Model saved at epoch 179 with best val accuracy 0.6544
+[2024/11/06 05:47:07] - epoch 180 lr 1.000000e-05
+[2024/11/06 05:47:07] - Device: [2]	Iter: [180][0/313]	Loss 0.873 (0.873)	Prec@1 0.672 (0.672)	
+[2024/11/06 05:47:09] - Device: [2]	Iter: [180][150/313]	Loss 0.906 (0.922)	Prec@1 0.695 (0.669)	
+[2024/11/06 05:47:12] - Device: [2]	Iter: [180][300/313]	Loss 0.943 (0.919)	Prec@1 0.672 (0.671)	
+[2024/11/06 05:47:13] - Val Loss 0.9787, Val Accuracy 0.6532
+[2024/11/06 05:47:14] - epoch 181 lr 1.000000e-05
+[2024/11/06 05:47:14] - Device: [2]	Iter: [181][0/313]	Loss 0.919 (0.919)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:47:17] - Device: [2]	Iter: [181][150/313]	Loss 0.809 (0.916)	Prec@1 0.727 (0.670)	
+[2024/11/06 05:47:20] - Device: [2]	Iter: [181][300/313]	Loss 1.022 (0.922)	Prec@1 0.656 (0.669)	
+[2024/11/06 05:47:21] - Val Loss 0.9641, Val Accuracy 0.6557
+[2024/11/06 05:47:22] - Model saved at epoch 181 with best val accuracy 0.6557
+[2024/11/06 05:47:23] - epoch 182 lr 1.000000e-05
+[2024/11/06 05:47:23] - Device: [2]	Iter: [182][0/313]	Loss 0.919 (0.919)	Prec@1 0.641 (0.641)	
+[2024/11/06 05:47:25] - Device: [2]	Iter: [182][150/313]	Loss 0.891 (0.916)	Prec@1 0.648 (0.669)	
+[2024/11/06 05:47:28] - Device: [2]	Iter: [182][300/313]	Loss 0.844 (0.918)	Prec@1 0.695 (0.668)	
+[2024/11/06 05:47:29] - Val Loss 0.9697, Val Accuracy 0.6544
+[2024/11/06 05:47:30] - epoch 183 lr 1.000000e-05
+[2024/11/06 05:47:30] - Device: [2]	Iter: [183][0/313]	Loss 0.857 (0.857)	Prec@1 0.688 (0.688)	
+[2024/11/06 05:47:33] - Device: [2]	Iter: [183][150/313]	Loss 0.905 (0.904)	Prec@1 0.664 (0.673)	
+[2024/11/06 05:47:36] - Device: [2]	Iter: [183][300/313]	Loss 0.892 (0.917)	Prec@1 0.703 (0.668)	
+[2024/11/06 05:47:37] - Val Loss 0.9668, Val Accuracy 0.6528
+[2024/11/06 05:47:38] - epoch 184 lr 1.000000e-05
+[2024/11/06 05:47:38] - Device: [2]	Iter: [184][0/313]	Loss 0.921 (0.921)	Prec@1 0.664 (0.664)	
+[2024/11/06 05:47:40] - Device: [2]	Iter: [184][150/313]	Loss 0.942 (0.914)	Prec@1 0.656 (0.671)	
+[2024/11/06 05:47:43] - Device: [2]	Iter: [184][300/313]	Loss 0.909 (0.914)	Prec@1 0.688 (0.672)	
+[2024/11/06 05:47:44] - Val Loss 0.9659, Val Accuracy 0.6558
+[2024/11/06 05:47:45] - Model saved at epoch 184 with best val accuracy 0.6558
+[2024/11/06 05:47:46] - epoch 185 lr 1.000000e-05
+[2024/11/06 05:47:46] - Device: [2]	Iter: [185][0/313]	Loss 0.940 (0.940)	Prec@1 0.695 (0.695)	
+[2024/11/06 05:47:49] - Device: [2]	Iter: [185][150/313]	Loss 0.901 (0.907)	Prec@1 0.727 (0.674)	
+[2024/11/06 05:47:52] - Device: [2]	Iter: [185][300/313]	Loss 0.837 (0.910)	Prec@1 0.695 (0.673)	
+[2024/11/06 05:47:53] - Val Loss 0.9589, Val Accuracy 0.6528
+[2024/11/06 05:47:54] - epoch 186 lr 1.000000e-05
+[2024/11/06 05:47:54] - Device: [2]	Iter: [186][0/313]	Loss 0.908 (0.908)	Prec@1 0.695 (0.695)	
+[2024/11/06 05:47:56] - Device: [2]	Iter: [186][150/313]	Loss 0.924 (0.896)	Prec@1 0.625 (0.680)	
+[2024/11/06 05:47:59] - Device: [2]	Iter: [186][300/313]	Loss 0.978 (0.902)	Prec@1 0.633 (0.677)	
+[2024/11/06 05:48:00] - Val Loss 0.9613, Val Accuracy 0.6579
+[2024/11/06 05:48:01] - Model saved at epoch 186 with best val accuracy 0.6579
+[2024/11/06 05:48:02] - epoch 187 lr 1.000000e-05
+[2024/11/06 05:48:02] - Device: [2]	Iter: [187][0/313]	Loss 0.887 (0.887)	Prec@1 0.680 (0.680)	
+[2024/11/06 05:48:05] - Device: [2]	Iter: [187][150/313]	Loss 0.840 (0.910)	Prec@1 0.703 (0.672)	
+[2024/11/06 05:48:07] - Device: [2]	Iter: [187][300/313]	Loss 0.856 (0.905)	Prec@1 0.695 (0.673)	
+[2024/11/06 05:48:08] - Val Loss 0.9547, Val Accuracy 0.6626
+[2024/11/06 05:48:09] - Model saved at epoch 187 with best val accuracy 0.6626
+[2024/11/06 05:48:10] - epoch 188 lr 1.000000e-05
+[2024/11/06 05:48:11] - Device: [2]	Iter: [188][0/313]	Loss 0.896 (0.896)	Prec@1 0.664 (0.664)	
+[2024/11/06 05:48:13] - Device: [2]	Iter: [188][150/313]	Loss 0.808 (0.896)	Prec@1 0.719 (0.677)	
+[2024/11/06 05:48:16] - Device: [2]	Iter: [188][300/313]	Loss 0.935 (0.900)	Prec@1 0.688 (0.677)	
+[2024/11/06 05:48:17] - Val Loss 0.9520, Val Accuracy 0.6562
+[2024/11/06 05:48:18] - epoch 189 lr 1.000000e-05
+[2024/11/06 05:48:18] - Device: [2]	Iter: [189][0/313]	Loss 0.866 (0.866)	Prec@1 0.680 (0.680)	
+[2024/11/06 05:48:21] - Device: [2]	Iter: [189][150/313]	Loss 0.876 (0.904)	Prec@1 0.719 (0.671)	
+[2024/11/06 05:48:24] - Device: [2]	Iter: [189][300/313]	Loss 0.856 (0.896)	Prec@1 0.703 (0.676)	
+[2024/11/06 05:48:25] - Val Loss 0.9617, Val Accuracy 0.6590
+[2024/11/06 05:48:26] - epoch 190 lr 1.000000e-05
+[2024/11/06 05:48:26] - Device: [2]	Iter: [190][0/313]	Loss 0.945 (0.945)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:48:28] - Device: [2]	Iter: [190][150/313]	Loss 0.980 (0.899)	Prec@1 0.570 (0.677)	
+[2024/11/06 05:48:31] - Device: [2]	Iter: [190][300/313]	Loss 0.951 (0.890)	Prec@1 0.672 (0.683)	
+[2024/11/06 05:48:32] - Val Loss 0.9473, Val Accuracy 0.6635
+[2024/11/06 05:48:33] - Model saved at epoch 190 with best val accuracy 0.6635
+[2024/11/06 05:48:34] - epoch 191 lr 1.000000e-05
+[2024/11/06 05:48:34] - Device: [2]	Iter: [191][0/313]	Loss 1.004 (1.004)	Prec@1 0.648 (0.648)	
+[2024/11/06 05:48:37] - Device: [2]	Iter: [191][150/313]	Loss 0.987 (0.894)	Prec@1 0.656 (0.680)	
+[2024/11/06 05:48:39] - Device: [2]	Iter: [191][300/313]	Loss 0.953 (0.894)	Prec@1 0.633 (0.681)	
+[2024/11/06 05:48:40] - Val Loss 0.9613, Val Accuracy 0.6565
+[2024/11/06 05:48:41] - epoch 192 lr 1.000000e-05
+[2024/11/06 05:48:42] - Device: [2]	Iter: [192][0/313]	Loss 0.717 (0.717)	Prec@1 0.719 (0.719)	
+[2024/11/06 05:48:44] - Device: [2]	Iter: [192][150/313]	Loss 0.932 (0.888)	Prec@1 0.719 (0.683)	
+[2024/11/06 05:48:47] - Device: [2]	Iter: [192][300/313]	Loss 0.919 (0.891)	Prec@1 0.672 (0.681)	
+[2024/11/06 05:48:48] - Val Loss 0.9510, Val Accuracy 0.6558
+[2024/11/06 05:48:49] - epoch 193 lr 1.000000e-05
+[2024/11/06 05:48:49] - Device: [2]	Iter: [193][0/313]	Loss 0.815 (0.815)	Prec@1 0.734 (0.734)	
+[2024/11/06 05:48:52] - Device: [2]	Iter: [193][150/313]	Loss 0.860 (0.881)	Prec@1 0.695 (0.684)	
+[2024/11/06 05:48:55] - Device: [2]	Iter: [193][300/313]	Loss 1.009 (0.886)	Prec@1 0.602 (0.681)	
+[2024/11/06 05:48:56] - Val Loss 0.9438, Val Accuracy 0.6611
+[2024/11/06 05:48:57] - epoch 194 lr 1.000000e-05
+[2024/11/06 05:48:57] - Device: [2]	Iter: [194][0/313]	Loss 0.967 (0.967)	Prec@1 0.672 (0.672)	
+[2024/11/06 05:48:59] - Device: [2]	Iter: [194][150/313]	Loss 0.799 (0.871)	Prec@1 0.664 (0.689)	
+[2024/11/06 05:49:02] - Device: [2]	Iter: [194][300/313]	Loss 0.763 (0.886)	Prec@1 0.734 (0.682)	
+[2024/11/06 05:49:03] - Val Loss 0.9384, Val Accuracy 0.6630
+[2024/11/06 05:49:04] - epoch 195 lr 1.000000e-05
+[2024/11/06 05:49:04] - Device: [2]	Iter: [195][0/313]	Loss 0.800 (0.800)	Prec@1 0.711 (0.711)	
+[2024/11/06 05:49:07] - Device: [2]	Iter: [195][150/313]	Loss 0.955 (0.887)	Prec@1 0.703 (0.681)	
+[2024/11/06 05:49:10] - Device: [2]	Iter: [195][300/313]	Loss 0.896 (0.882)	Prec@1 0.633 (0.684)	
+[2024/11/06 05:49:11] - Val Loss 0.9441, Val Accuracy 0.6610
+[2024/11/06 05:49:12] - epoch 196 lr 1.000000e-05
+[2024/11/06 05:49:12] - Device: [2]	Iter: [196][0/313]	Loss 0.825 (0.825)	Prec@1 0.734 (0.734)	
+[2024/11/06 05:49:14] - Device: [2]	Iter: [196][150/313]	Loss 0.875 (0.890)	Prec@1 0.727 (0.680)	
+[2024/11/06 05:49:17] - Device: [2]	Iter: [196][300/313]	Loss 0.782 (0.884)	Prec@1 0.742 (0.682)	
+[2024/11/06 05:49:18] - Val Loss 0.9358, Val Accuracy 0.6638
+[2024/11/06 05:49:19] - Model saved at epoch 196 with best val accuracy 0.6638
+[2024/11/06 05:49:20] - epoch 197 lr 1.000000e-05
+[2024/11/06 05:49:20] - Device: [2]	Iter: [197][0/313]	Loss 0.906 (0.906)	Prec@1 0.664 (0.664)	
+[2024/11/06 05:49:23] - Device: [2]	Iter: [197][150/313]	Loss 0.839 (0.875)	Prec@1 0.680 (0.687)	
+[2024/11/06 05:49:25] - Device: [2]	Iter: [197][300/313]	Loss 0.877 (0.876)	Prec@1 0.719 (0.686)	
+[2024/11/06 05:49:26] - Val Loss 0.9418, Val Accuracy 0.6652
+[2024/11/06 05:49:27] - Model saved at epoch 197 with best val accuracy 0.6652
+[2024/11/06 05:49:28] - epoch 198 lr 1.000000e-05
+[2024/11/06 05:49:28] - Device: [2]	Iter: [198][0/313]	Loss 1.015 (1.015)	Prec@1 0.680 (0.680)	
+[2024/11/06 05:49:31] - Device: [2]	Iter: [198][150/313]	Loss 0.696 (0.873)	Prec@1 0.766 (0.686)	
+[2024/11/06 05:49:34] - Device: [2]	Iter: [198][300/313]	Loss 0.730 (0.877)	Prec@1 0.719 (0.685)	
+[2024/11/06 05:49:35] - Val Loss 0.9382, Val Accuracy 0.6629
+[2024/11/06 05:49:36] - epoch 199 lr 1.000000e-05
+[2024/11/06 05:49:36] - Device: [2]	Iter: [199][0/313]	Loss 0.878 (0.878)	Prec@1 0.688 (0.688)	
+[2024/11/06 05:49:39] - Device: [2]	Iter: [199][150/313]	Loss 0.899 (0.883)	Prec@1 0.680 (0.679)	
+[2024/11/06 05:49:41] - Device: [2]	Iter: [199][300/313]	Loss 0.751 (0.876)	Prec@1 0.750 (0.683)	
+[2024/11/06 05:49:42] - Val Loss 0.9314, Val Accuracy 0.6681
+[2024/11/06 05:49:43] - Model saved at epoch 199 with best val accuracy 0.6681
+[2024/11/06 05:49:44] - Training completed in 26.77 minutes.

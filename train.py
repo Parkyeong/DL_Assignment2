@@ -3,6 +3,7 @@ import logging
 import os
 import sys
 import time
+import csv
 
 import numpy as np
 import torch
@@ -16,6 +17,10 @@ from utils import evaluate_standard, get_loaders
 
 logger = logging.getLogger(__name__)
 
+
+def parse_augs(augs):
+    return [aug.strip() for aug in augs.split(',') if aug.strip()]
+
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size', default=128, type=int)
@@ -24,12 +29,14 @@ def get_args():
     parser.add_argument('--epochs', default=200, type=int)
     parser.add_argument('--network', default='ResNet18', type=str)
     parser.add_argument('--worker', default=4, type=int)
-    parser.add_argument('--num_grids', default=1, type=int)
-    parser.add_argument('--lr_schedule', default='multistep', choices=['cyclic', 'multistep', 'cosine'])
+    parser.add_argument('--lr_schedule', default='multistep', choices=['cyclic', 'multistep', 'cosine','constant'])
     parser.add_argument('--lr_min', default=0., type=float)
     parser.add_argument('--lr_max', default=0.1, type=float)
     parser.add_argument('--weight_decay', default=5e-4, type=float)
     parser.add_argument('--momentum', default=0.9, type=float)
+    parser.add_argument('--residual', action='store_true', help='apply residual in resnet')
+    parser.add_argument('--validation', action='store_true', help='using validation set')
+    parser.add_argument('--augs', type=parse_augs, default='RandomCrop, RandomHorizontalFlip', help="Comma-separated list of augmentations")
     parser.add_argument('--save_dir', default='ckpt', type=str, help='Output directory')
     parser.add_argument('--seed', default=0, type=int, help='Random seed')
     parser.add_argument('--device', type=str, default='0')  # gpu
@@ -39,6 +46,14 @@ def get_args():
 
 def setup_logging(save_dir):
     logfile = os.path.join(save_dir, 'output.log')
+    # CSV file path for metrics
+    csv_file = os.path.join(save_dir, 'output.csv')
+    
+    # Initialize the CSV file with headers if it doesn't exist
+    if not os.path.exists(csv_file):
+        with open(csv_file, mode='w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(['epoch', 'train_loss', 'val_loss', 'train_acc', 'val_acc', 'lr'])
     
     # Check if the log file already exists
     if os.path.exists(logfile):
@@ -58,9 +73,6 @@ def setup_logging(save_dir):
     
 def main():
     args = get_args()
-        
-    # if args.debug_mode:
-    #     print("Debug mode enabled")
     
     if args.dataset == 'cifar10':
         args.num_classes = 10
@@ -77,20 +89,9 @@ def main():
         os.makedirs(args.save_dir)
         
     logfile = os.path.join(args.save_dir, 'output.log')
+    csv_file = os.path.join(args.save_dir, 'output.csv')  # Define CSV file path
     
-            
-    if os.path.exists(logfile):
-        with open(logfile, 'a') as f:
-            restart_time = time.strftime("%H:%M:%S %d/%m/%Y")
-            f.write(f"\nResume from previous work, time restart from {restart_time}\n")
-    
-    handlers = [logging.FileHandler(logfile, mode='a+'),
-                logging.StreamHandler()]
-    logging.basicConfig(
-        format='[%(asctime)s] - %(message)s',
-        datefmt='%Y/%m/%d %H:%M:%S',
-        level=logging.INFO,
-        handlers=handlers)
+    setup_logging(args.save_dir)
     logger.info(args)
 
     # set current device
@@ -104,8 +105,8 @@ def main():
     torch.cuda.manual_seed(args.seed)
 
     # get data loader
-    train_loader, test_loader, dataset_normalization = get_loaders(args.data_dir, args.batch_size, dataset=args.dataset,
-                                                                   worker=args.worker)
+    train_loader, val_loader, dataset_normalization = get_loaders(args.data_dir, args.batch_size, dataset=args.dataset,
+                                                                   worker=args.worker,augs=args.augs, validation = args.validation)
 
     # setup network
     if args.network == 'ResNet18':
@@ -123,7 +124,7 @@ def main():
         print('Wrong network:', args.network)
         exit()
 
-    model = net(num_classes=args.num_classes).cuda()
+    model = net(residual=args.residual, num_classes=args.num_classes).cuda()
     model = torch.nn.DataParallel(model)
     logger.info(model)
 
@@ -143,6 +144,9 @@ def main():
         scheduler = torch.optim.lr_scheduler.MultiStepLR(opt, milestones=[lr_steps // 2, lr_steps * 3 // 4], gamma=0.1)
     elif args.lr_schedule == 'cosine':
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=float(args.epochs))
+    elif args.lr_schedule == 'constant':
+        # Use LambdaLR to keep the learning rate constant at args.lr_max
+        scheduler = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda=lambda epoch: 1.0)
 
     # load pretrained model
     if os.path.exists(os.path.join(args.save_dir, 'model_latest.pth')):
@@ -205,13 +209,25 @@ def main():
                     train_acc / train_n)
                 )
 
-        # Evaluate on test set
-        test_loss, test_acc = evaluate_standard(test_loader, model)
-        logger.info('Test Loss {:.4f}, Test Accuracy {:.4f}'.format(test_loss, test_acc))
+        # Evaluate on val set
+        val_loss, val_acc = evaluate_standard(val_loader, model)
+        logger.info('Val Loss {:.4f}, Val Accuracy {:.4f}'.format(val_loss, val_acc))
+
+        # Save metrics to CSV
+        with open(csv_file, mode='a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([
+                epoch,
+                train_loss / train_n,
+                val_loss,
+                train_acc / train_n,
+                val_acc,
+                scheduler.get_lr()[0]
+            ])
 
         # Save the model if it has the best accuracy so far
-        if test_acc > best_acc:
-            best_acc = test_acc
+        if val_acc > best_acc:
+            best_acc = val_acc
             torch.save({
                 'epoch': epoch,
                 'state_dict': model.state_dict(),
@@ -219,7 +235,7 @@ def main():
                 'scheduler': scheduler.state_dict(),
                 'best_acc': best_acc,
             }, os.path.join(args.save_dir, 'model_best.pth'))
-            logger.info('Model saved at epoch {} with best accuracy {:.4f}'.format(epoch, best_acc))
+            logger.info('Model saved at epoch {} with best val accuracy {:.4f}'.format(epoch, best_acc))
 
         # Save the latest model at the end of each epoch
         torch.save({

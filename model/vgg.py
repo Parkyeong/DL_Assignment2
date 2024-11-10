@@ -3,11 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class VGG(nn.Module):
-    def __init__(self, vgg_name, num_classes=10, temp=1.0):
+    def __init__(self, vgg_name, num_classes=10):
         super(VGG, self).__init__()
         self.features = self._make_layers(self.cfg[vgg_name])
         self.classifier = nn.Linear(512, num_classes)
-        self.temp = temp
 
     cfg = {
         'VGG16': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M', 512, 512, 512, 'M'],
@@ -31,11 +30,11 @@ class VGG(nn.Module):
         out = self.features(x)
         out = F.avg_pool2d(out, 1)  # CIFAR-10的图像尺寸较小
         out = out.view(out.size(0), -1)
-        out = self.classifier(out) / self.temp
+        out = self.classifier(out) 
         return out
 
-def VGG16(temp=1.0, **kwargs):
-    return VGG('VGG16', temp=temp, **kwargs)
+def VGG16(residual, **kwargs):
+    return VGG('VGG16', **kwargs)
 
-def VGG19(temp=1.0, **kwargs):
-    return VGG('VGG19', temp=temp, **kwargs)
+def VGG19(residual, **kwargs):
+    return VGG('VGG19', **kwargs)
