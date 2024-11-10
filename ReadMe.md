@@ -182,4 +182,4 @@ python train.py --network "ResNet50" --save_dir "test_residual_off"
 
 
 ### Pretrained Models
-Pretrained models are provided in [To be released].
+Example pretrained models are provided in [**ResNet18**](https://drive.google.com/drive/folders/1_1nu3KE9r9ScX7lkgmeALvztxEdtYzYE?usp=drive_link) with the best accuracy of 95.15%. Please place the weight to the Path "./ckpt/cifar10/ResNet18/best_result".
