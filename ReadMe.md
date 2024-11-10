@@ -51,17 +51,17 @@
 
 <div style="text-align: center;">
     <img src="sources/Res18.png" alt="Image A" width="300"/>
-    <p>**Figure A**: ResNet18.</p>
+    <p>Figure A: ResNet18.</p>
 </div>
 
 <div style="text-align: center;">
     <img src="sources/Res34.png" alt="Image B" width="300"/>
-    <p>**Figure B**: ResNet34.</p>
+    <p>Figure B: ResNet34.</p>
 </div>
 
 <div style="text-align: center;">
     <img src="sources/Res50.png" alt="Image C" width="300"/>
-    <p>**Figure C**: ResNet50.</p>
+    <p>Figure C: ResNet50.</p>
 </div>
 
 </div>
@@ -80,12 +80,12 @@ ResNet50. on CIFAR10
 
 <div style="text-align: center;">
     <img src="sources/LR.png" alt="Image A" width="300"/>
-    <p>**Figure A**: Learning Rate.</p>
+    <p>Figure A: Learning Rate.</p>
 </div>
 
 <div style="text-align: center;">
     <img src="sources/WD.png" alt="Image B" width="300"/>
-    <p>**Figure B**: Weight Decay.</p>
+    <p>Figure B: Weight Decay.</p>
 </div>
 
 </div>
@@ -96,9 +96,9 @@ ResNet50. on CIFAR10
 |-------------------------------------|--------------|
 | None                                | 87.13        |
 | RandomCrop                          | 92.89        |
-| w/. + RandomHorizontalFlip          | 94.61        |
+| \ \ w/. + RandomHorizontalFlip      | 94.61        |
 | RandomHorizontalFlip                | 90.66        |
-| w/. + RandomCrop                    | 94.23        |
+| \ \ w/. + RandomCrop                | 94.23        |
 
 **Table 2**: Validation Accuracy across various augmentation methods on CIFAR10@ResNet18.
 
