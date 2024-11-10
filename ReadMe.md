@@ -16,18 +16,18 @@
 
 <img src="sources/ResidualIllustration.png" alt="Main ResidualIllustration" width="500"/>
 
-**Figure 4**: A illustration of residual function F in ResNet. Left: Basic block, Right: Bottleneck block.
+**Figure 2**: A illustration of residual function F in ResNet. Left: Basic block, Right: Bottleneck block.
 ## Feature Maps
 
 <img src="sources/FeatureMap.png" alt="Main Architectures" width="500"/>
 
-**Figure 2**: The feature maps are obtained from our experiment con- ducted in CIFAR-10@ResNet18. The images show the feature maps at different network depths
+**Figure 3**: The feature maps are obtained from our experiment con- ducted in CIFAR-10@ResNet18. The images show the feature maps at different network depths
 
 ## Network Performance
 
 <img src="sources/Networks_Performance.png" alt="Networks_Performance" width="500"/>
 
-**Figure 3**: Networks performance comparison among different depths and architectures on CIFAR10.
+**Figure 4**: Networks performance comparison among different depths and architectures on CIFAR10.
 
 ## Main Result
 ![test_acc](sources/test_acc.png)
@@ -183,3 +183,4 @@ python train.py --network "ResNet50" --save_dir "test_residual_off"
 
 ### Pretrained Models
 Example pretrained models are provided in [**ResNet18**](https://drive.google.com/drive/folders/1_1nu3KE9r9ScX7lkgmeALvztxEdtYzYE?usp=drive_link) with the best accuracy of 95.15%. Please place the weight to the Path `"./ckpt/cifar10/ResNet18/best_result"`.
+
